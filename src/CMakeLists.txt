@@ -111,3 +111,8 @@ target_link_libraries(AT
     ${Winmm_LIBRARY}
     ws2_32
     Winmm)
+
+if (GAME_DIR)
+add_custom_command(TARGET AT POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:AT> ${GAME_DIR})
+endif()

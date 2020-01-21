@@ -2,6 +2,7 @@
 
 project (AirlineTycoon)
 
+set(GAME_DIR "" CACHE PATH "The AT installation directory")
 set(CMAKE_CXX_STANDARD 17)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_BINARY_DIR}")
