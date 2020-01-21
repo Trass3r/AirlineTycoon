@@ -2,6 +2,8 @@
 
 project (AirlineTycoon)
 
+set(CMAKE_CXX_STANDARD 17)
+
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_BINARY_DIR}")
 
 if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")

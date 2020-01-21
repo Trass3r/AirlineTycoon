@@ -97,7 +97,6 @@ add_executable (AT ${HDRS}
     Res/Script2.rc
 )
 
-set_property(TARGET AT PROPERTY CXX_STANDARD 17)
 if(NOT ${CMAKE_VERSION} VERSION_LESS "3.16.0")
     target_precompile_headers(AT PUBLIC Stdafx.h)
 endif()
