@@ -19,7 +19,7 @@
 #define	MAX_FX_BUFFER			(4)
 #define	EVENTS					(2)
 
-typedef _Return_type_success_(return >= 0) LONG HRESULT;
+typedef LONG HRESULT;
 
 #ifndef MAKE_HRESULT
 #define MAKE_HRESULT(sev,fac,code) \
