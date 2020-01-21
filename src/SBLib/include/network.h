@@ -1,7 +1,9 @@
 #pragma once
 
 #define _WINSOCK2API_   /* Prevent inclusion of winsock2.h in enet.h */
+#if _WIN32
 typedef struct fd_set fd_set;
+#endif
 typedef ptrdiff_t SOCKET;
 #include <enet/enet.h>
 

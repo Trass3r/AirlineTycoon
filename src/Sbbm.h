@@ -131,7 +131,7 @@
          BOOL   FillWith (dword Color) { Bench.ClearTime.Start(); pBitmap->Clear ((SB_CHardwarecolorHelper *)Color); Bench.ClearTime.Stop(); return (TRUE); }
          BOOL   Line (const XY &From, const XY &To, dword Color) {pBitmap->Line (From.x, From.y, To.x, To.y, Color); return (TRUE); }
          BOOL   Line (SLONG x1, SLONG y1, SLONG x2, SLONG y2, dword Color) { return(Line (XY(x1,y1), XY(x2,y2), Color)); return (TRUE); }
-         BOOL   Line (const XY &From, const XY &To, SB_Hardwarecolor Color) {pBitmap->Line (From.x, From.y, To.x, To.y, Color); return (TRUE); }
+         BOOL   Line (const XY &From, const XY &To, SB_Hardwarecolor Color) {pBitmap->Line (From.x, From.y, To.x, To.y, (SB_CHardwarecolorHelper*)Color); return (TRUE); }
          BOOL   Line (SLONG x1, SLONG y1, SLONG x2, SLONG y2, SB_Hardwarecolor Color) { return(Line (XY(x1,y1), XY(x2,y2), Color)); return (TRUE); }
          BOOL   FatLine (SLONG x1, SLONG y1, SLONG x2, SLONG y2, SB_Hardwarecolor Color)
          {
@@ -204,7 +204,6 @@
          void  ReSize (GfxLib* gfxLibrary, const CString &graphicIDs, SLONG Anzahl);
          SLONG AnzEntries() const { return (Bitmaps.AnzEntries()); }
 
-         SB1BM& operator [](const SLONG Index) const { return Bitmaps[Index]; }
          SB1BM& operator [](const int Index) const { return Bitmaps[Index]; }
    };
 
