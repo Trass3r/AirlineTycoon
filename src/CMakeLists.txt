@@ -15,8 +15,9 @@ else()
     add_compile_options("-fno-for-scope")
 endif()
 
+file(GLOB HDRS CONFIGURE_DEPENDS *.h)
 # Add source to this project's executable.
-add_executable (AT
+add_executable (AT ${HDRS}
     Buero.cpp
     City.cpp
     DataTabl.cpp
