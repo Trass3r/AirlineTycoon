@@ -21,8 +21,8 @@ typedef CStdStringA CString;
 #include "TeakLibW.H"
 #include "sbl.h"
 #include "sbbm.h"
-#include "sse.h"
-#include "ColorFx.h"
+#include "SSE.h"
+#include "Colorfx.h"
 
 #include "glstd.h"
 #include "glbasis.h"
@@ -32,11 +32,11 @@ typedef CStdStringA CString;
 #include "class.h"         //Eigene Klassen
 #include "Proto.h"
 #include "TakeOff.h"
-#include "GameFrame.h"     //Rahmenfenster mit PrimarySurface
+#include "Gameframe.h"     //Rahmenfenster mit PrimarySurface
 
 //Räume:
-#include "SmackPrs.h"
-#include "StdRaum.h"
+#include "Smackprs.h"
+#include "Stdraum.h"
 #include "Planer.h"        //Die Basisklasse für Laptop/Globe
 #include "AirportView.h"   //Die Isometrische Sicht auf den Flughafen
 #include "Globe.h"         //Der Nachfolger des Schedulers
