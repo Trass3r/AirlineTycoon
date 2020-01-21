@@ -7460,7 +7460,8 @@ phone_busy:
          if (MouseClickArea==-101 && MouseClickId==MENU_CHAT && MouseClickPar1==2)
          {
             //Sind nur Zahlen im Text?
-            for (SLONG c=strlen(Optionen[0])-1; c>=0; c--)
+            SLONG c = strlen(Optionen[0])-1;
+            for (; c>=0; c--)
                if (Optionen[0].GetAt(c)<'0' || Optionen[0].GetAt(c)>'9') break;
 
             if (c==-1 && Optionen[0].GetLength()>0 && _atoi64(Optionen[0])!=0)

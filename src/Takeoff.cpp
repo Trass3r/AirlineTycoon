@@ -2080,7 +2080,7 @@ void CTakeOffApp::CheckSystem (void)
                 Emergency=TRUE;
          }
 
-         for (d=0; d<Sim.Players.Players[c].Statistiken.AnzEntries(); d++)
+         for (SLONG d=0; d<Sim.Players.Players[c].Statistiken.AnzEntries(); d++)
          {
             if (Sim.Players.Players[c].Statistiken[d].Days.AnzEntries()==0)
                 Emergency=TRUE;

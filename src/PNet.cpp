@@ -418,7 +418,8 @@ void PLAYER::NetUpdateWorkers (void)
    
    Message << PlayerNum << m << n;
 
-   for (SLONG c=0; c<(SLONG)Planes.AnzEntries(); c++)
+   SLONG c = 0;
+   for (; c<(SLONG)Planes.AnzEntries(); c++)
       if (Planes.IsInAlbum(c))
       {
          Message << c;

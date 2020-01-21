@@ -9,7 +9,7 @@ long gLanguage;
 
 void LanguageSpecifyString(char *Dst)
 {
-    int i, j;
+    int i = 0, j = 0;
     char langs[24];
 
     strcpy(langs, "DEFTPNISOBJKLMNQRTUV");

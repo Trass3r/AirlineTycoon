@@ -610,7 +610,7 @@ SLONG PLAYER::GetMissionRating (bool bAnderer)
                else
                {
                   //Menschlicher Spieler hat Personal:
-                  for (c=0; c<Workers.Workers.AnzEntries(); c++)
+                  for (int c=0; c<Workers.Workers.AnzEntries(); c++)
                   {
                      CWorker &qWorker = Workers.Workers[c];
 
@@ -4803,7 +4803,7 @@ void PLAYER::RobotExecuteAction(void)
                               if (Routen[c].VonCity==Routen[d].VonCity || Routen[c].VonCity==Routen[d].NachCity || Routen[c].NachCity==Routen[d].VonCity || Routen[c].NachCity==Routen[d].NachCity)
                                  IsBuyable[d]=TRUE;
                      }
-               for (d=Routen.AnzEntries()-1; d>=0; d--)
+               for (int d=Routen.AnzEntries()-1; d>=0; d--)
                   if (Routen.IsInAlbum(d) && RentRouten.RentRouten[d].Rang==0 && RentRouten.RentRouten[d].TageMitGering<7)
                      IsBuyable[d]=FALSE;
 

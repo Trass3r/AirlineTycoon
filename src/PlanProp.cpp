@@ -221,7 +221,7 @@ void CPlaneProps::OnPaint()
          //RoomBm.PrintAt (bprintf ("%s %s", (LPCTSTR)(CString)Einheiten[EINH_DM].bString (PlaneTypes[qPlane.TypeId].Passagiere*FoodCosts[qPlane.EssenTarget]), (LPCTSTR)StandardTexte.GetS (TOKEN_SCHED, 1801)),    FontSmallBlack, TEC_FONT_RIGHT, XY(502,334)+ScrollOffset, XY(631,353)+ScrollOffset);
 
          //Kosten für aktuelle Auswahl
-         for (c=0; c<3; c++)
+         for (int c=0; c<3; c++)
             for (SLONG d=0; d<4; d++)
                if (gMousePosition.IfIsWithin (StarOffsets[d].x+c*47+ScrollOffsetX,StarOffsets[d].y,StarOffsets[d].x+43+c*47+ScrollOffsetX,StarOffsets[d].y+36))
                   switch (d)

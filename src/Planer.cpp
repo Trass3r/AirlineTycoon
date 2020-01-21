@@ -652,8 +652,8 @@ void CPlaner::DoPollingStuff (void)
       }
 
    if (MenuIsOpen()) return;
-
-   for (c=qPlayer.Blocks.AnzEntries(); c>=0; c--)
+   int c = qPlayer.Blocks.AnzEntries();
+   for (; c>=0; c--)
       if (qPlayer.Blocks.IsInAlbum(c))
          if (qPlayer.Blocks[c].BlockType==1)
          {
@@ -1012,7 +1012,7 @@ void CPlaner::DoPollingStuff (void)
                   }
 
                //Drag am Flugende:
-               for (d=qPlan.Flug.AnzEntries()-1; d>=0; d--)
+               for (int d = qPlan.Flug.AnzEntries() - 1; d >= 0; d--)
                   if (qPlan.Flug[d].ObjectType==1 || qPlan.Flug[d].ObjectType==2 || qPlan.Flug[d].ObjectType==4)
                   {
                      if (qPlan.Flug[d].Landedate==Date && qPlan.Flug[d].Landezeit==Time && (qPlan.Flug[d].Startdate!=Sim.Date || qPlan.Flug[d].Startzeit>Sim.GetHour()+1))
@@ -1036,7 +1036,8 @@ void CPlaner::DoPollingStuff (void)
             SLONG      Date=Sim.Date+(ClientPos.y-17)/19;
             SLONG      Time=(ClientPos.x-25)/6;
 
-            for (SLONG d=qPlan.Flug.AnzEntries()-1; d>=0; d--)
+            SLONG d = qPlan.Flug.AnzEntries() - 1;
+            for (; d>=0; d--)
                if (qPlan.Flug[d].ObjectType)
                {
                   if ((qPlan.Flug[d].Startdate<Date || (qPlan.Flug[d].Startdate==Date && qPlan.Flug[d].Startzeit<=Time)) &&
@@ -1162,7 +1163,7 @@ void CPlaner::DoPollingStuff (void)
                   }
 
                //Drag am Flugende:
-               for (d=qPlan.Flug.AnzEntries()-1; d>=0; d--)
+               for (int d = qPlan.Flug.AnzEntries()-1; d>=0; d--)
                   if (qPlan.Flug[d].ObjectType==1 || qPlan.Flug[d].ObjectType==2)
                   {
                      if (qPlan.Flug[d].Startdate==Date && qPlan.Flug[d].Landezeit==Time && (qPlan.Flug[d].Startdate!=Sim.Date || qPlan.Flug[d].Startzeit>Sim.GetHour()+1))
@@ -1186,7 +1187,8 @@ void CPlaner::DoPollingStuff (void)
             SLONG      Date=Sim.Date+pBlock->Page;
             SLONG      Time=(ClientPos.y-6)/6;
 
-            for (SLONG d=qPlan.Flug.AnzEntries()-1; d>=0; d--)
+            SLONG d = qPlan.Flug.AnzEntries() - 1;
+            for (; d >= 0; d--)
                if (qPlan.Flug[d].ObjectType)
                {
                   if ((qPlan.Flug[d].Startdate<Date || (qPlan.Flug[d].Startdate==Date && qPlan.Flug[d].Startzeit<=Time)) &&
@@ -1733,7 +1735,8 @@ void CPlaner::HandleLButtonDown (void)
                }
                else
                {
-                  for (SLONG c=qPlan.Flug.AnzEntries()-1; c>=0; c--)
+                  SLONG c = qPlan.Flug.AnzEntries() - 1;
+                  for (; c>=0; c--)
                      if (qPlan.Flug[c].ObjectType)
                      {
                         if ((qPlan.Flug[c].Startdate<ClickDate || (qPlan.Flug[c].Startdate==ClickDate && qPlan.Flug[c].Startzeit<=ClickTime)) &&
@@ -1808,7 +1811,8 @@ void CPlaner::HandleLButtonDown (void)
 
             if (Date>Sim.Date || (Date==Sim.Date && Time>Sim.GetHour()+1))
             {
-               for (SLONG c=qPlan.Flug.AnzEntries()-1; c>=0; c--)
+               SLONG c = qPlan.Flug.AnzEntries() - 1;
+               for (; c>=0; c--)
                   if (qPlan.Flug[c].ObjectType)
                   {
                      if ((qPlan.Flug[c].Startdate<Date || (qPlan.Flug[c].Startdate==Date && qPlan.Flug[c].Startzeit<=Time)) &&
@@ -1916,7 +1920,8 @@ void CPlaner::HandleLButtonDown (void)
                   }
                   else
                   {
-                     for (SLONG c=qPlan.Flug.AnzEntries()-1; c>=0; c--)
+                     SLONG c = qPlan.Flug.AnzEntries() - 1;
+                     for (; c>=0; c--)
                         if (qPlan.Flug[c].ObjectType)
                         {
                            if ((qPlan.Flug[c].Startdate<Date || (qPlan.Flug[c].Startdate==Date && qPlan.Flug[c].Startzeit<=Time)) &&
@@ -1986,7 +1991,8 @@ void CPlaner::HandleLButtonDown (void)
 
                if (Date>Sim.Date || (Date==Sim.Date && Time>Sim.GetHour()+1))
                {
-                  for (SLONG c=qPlan.Flug.AnzEntries()-1; c>=0; c--)
+                  SLONG c = qPlan.Flug.AnzEntries() - 1;
+                  for (; c>=0; c--)
                      if (qPlan.Flug[c].ObjectType)
                      {
                         if ((qPlan.Flug[c].Startdate<Date || (qPlan.Flug[c].Startdate==Date && qPlan.Flug[c].Startzeit<=Time)) &&
@@ -2496,7 +2502,8 @@ void CPlaner::HandleLButtonUp (void)
                }
                else
                {
-                  for (SLONG c=qPlan.Flug.AnzEntries()-1; c>=0; c--)
+                  SLONG c = qPlan.Flug.AnzEntries() - 1;
+                  for (; c>=0; c--)
                      if (qPlan.Flug[c].ObjectType)
                      {
                         if ((qPlan.Flug[c].Startdate<ClickDate || (qPlan.Flug[c].Startdate==ClickDate && qPlan.Flug[c].Startzeit<=ClickTime)) &&
@@ -2862,7 +2869,8 @@ void CPlaner::HandleLButtonDouble (void)
                      else
                      {
                      add:
-                        for (SLONG c=qPlan.Flug.AnzEntries()-1; c>=0; c--)
+                        SLONG c = qPlan.Flug.AnzEntries() - 1;
+                        for (; c>=0; c--)
                            if (qPlan.Flug[c].ObjectType!=0)
                               break;
 

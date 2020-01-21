@@ -1177,8 +1177,6 @@ void NewGamePopup::OnLButtonDown(UINT nFlags, CPoint point)
 
    if (!PreLButtonDown (point))
    {
-      SLONG c;
-
       SLONG Line=(point.y-63)/22;
       SLONG Column=(point.x-128)/16;
 
@@ -1213,7 +1211,8 @@ void NewGamePopup::OnLButtonDown(UINT nFlags, CPoint point)
             PageSub = 0;
 
 again_heimatflughafen:
-            for (SLONG c=PageSub; c<PageSub+12; c++)
+            SLONG c = PageSub;
+            for (; c<PageSub+12; c++)
                if (Cities.IsInAlbum(c) && Cities.GetIdFromIndex(c)==(ULONG)Sim.HomeAirportId) break;
 
             if (PageSub<500)
@@ -1509,7 +1508,7 @@ again_heimatflughafen:
          {
             if (PageNum==18 && gNetworkSavegameLoading!=-1 && !GridPos.IfIsWithin (1, 15, 7, 15)) return;
 
-            for (c=0; c<4; c++)
+            for (int c=0; c<4; c++)
             {
                if (point.x>=128 && point.x<=175 && (Sim.Players.Players[c].NetworkID==gNetwork.GetLocalPlayerID() && PageNum==18))
                {

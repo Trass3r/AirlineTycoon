@@ -1897,11 +1897,11 @@ void NetGenericSync (long SyncId)
     {
        for (long c=0; c<4; c++)
           if (Sim.Players.Players[c].Owner!=1 && GenericSyncIds[c]!=SyncId && !Sim.Players.Players[c].IsOut)
-             break;
-
-       if (c==4) return;
-
-       PumpNetwork();
+          {
+             PumpNetwork();
+             continue;
+          }
+       break;
     }
 }
 
@@ -1929,7 +1929,8 @@ void NetGenericSync (long SyncId, long Par)
 
    while (1)
    {
-      for (long c=0; c<4; c++)
+      long c = 0;
+      for (; c<4; c++)
          if (Sim.Players.Players[c].Owner!=1 && GenericSyncIds[c]!=SyncId && !Sim.Players.Players[c].IsOut)
             break;
 
@@ -1997,7 +1998,8 @@ void NetGenericAsync (long SyncId, long Par, long player)
    GenericAsyncIds[d+player]=SyncId;
    GenericAsyncIdPars[d+player]=Par;
 
-   for (long c=0; c<4; c++)
+   int c = 0;
+   for (; c < 4; c++)
       if (Sim.Players.Players[c].Owner!=1 && GenericAsyncIds[d+c]!=SyncId && !Sim.Players.Players[c].IsOut)
          break;
 

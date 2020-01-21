@@ -517,7 +517,7 @@ UBYTE CLANS::GetCustomerId (SLONG Browned, SLONG Koffer, TEAKRAND *pRand)
 
    Num = 0;
 
-   for (c=0; c<(SLONG)AnzEntries(); c++)
+   for (int c=0; c<(SLONG)AnzEntries(); c++)
    if (IsInAlbum (c) && (*this)[c].TodayInGame && (Koffer==sign((*this)[c].HasSuitcase) || (Koffer==99 && (*this)[c].HasSuitcase<=0)) && ((((*this)[c].Type==CLAN_FEMALE || (*this)[c].Type==CLAN_MALE) && Browned<2) || (((*this)[c].Type==CLAN_BROWNFEMALE || (*this)[c].Type==CLAN_BROWNMALE) && Browned>0)))
 		{
 			Num+=(*this)[c].Wkeit;
@@ -547,7 +547,7 @@ UBYTE CLANS::GetCustomerIdByGroup (SLONG Group)
 
       Num = 0;
 
-      for (c=0; c<(SLONG)AnzEntries(); c++)
+      for (int c=0; c<(SLONG)AnzEntries(); c++)
          if (IsInAlbum (c) && (*this)[c].TodayInGame && Group==(*this)[c].Group)
 		   {
 			   Num++;
@@ -1328,7 +1328,8 @@ void PERSON::DoOneCustomerStep (void)
                            else
                            {
                               //Prüfen, ob auf der gemeinsamen Innenspur Platz ist...
-                              for (SLONG c=0; c<5; c++)
+                              SLONG c = 0;
+                              for (; c<5; c++)
                                  if (((Airport.iPlateDir[12+((ArrayPos.x+c)<<4)]==3 || Airport.iPlateDir[12+((ArrayPos.x+c)<<4)]==254) && (Airport.iPlate[12+((ArrayPos.x+c)<<4)]&2)) || (Airport.iPlate[12+((ArrayPos.x+c)<<4)]&64)==0)
                                     break;
 
@@ -1345,7 +1346,8 @@ void PERSON::DoOneCustomerStep (void)
                            else if (ArrayPos.y+5==12 && (Dir==1 || Dir==0))
                            {
                               //Prüfen, ob auf der gemeinsamen Innenspur Platz ist...
-                              for (SLONG c=0; c<5; c++)
+                              SLONG c = 0;
+                              for (; c<5; c++)
                                  if ((Airport.iPlateDir[12+((ArrayPos.x+c)<<4)]==3 && (Airport.iPlate[12+((ArrayPos.x+c)<<4)]&2)) || (Airport.iPlate[12+((ArrayPos.x+c)<<4)]&64)==0)
                                     break;
 
@@ -1375,7 +1377,8 @@ void PERSON::DoOneCustomerStep (void)
                            else
                            {
                               //Prüfen, ob auf der gemeinsamen Innenspur Platz ist...
-                              for (SLONG c=0; c<5; c++)
+                              SLONG c = 0;
+                              for (; c < 5; c++)
                                  if (((Airport.iPlateDir[12+((ArrayPos.x-c)<<4)]==1 || Airport.iPlateDir[12+((ArrayPos.x-c)<<4)]==254) && (Airport.iPlate[12+((ArrayPos.x-c)<<4)]&2)) || (Airport.iPlate[12+((ArrayPos.x-c)<<4)]&16)==0)
                                     break;
 
@@ -1392,7 +1395,8 @@ void PERSON::DoOneCustomerStep (void)
                            else if (ArrayPos.y+5==12 && (Dir==3 || Dir==2))
                            {
                               //Prüfen, ob auf der gemeinsamen Innenspur Platz ist...
-                              for (SLONG c=0; c<5; c++)
+                              SLONG c = 0;
+                              for (; c < 5; c++)
                                  if ((Airport.iPlateDir[12+((ArrayPos.x-c)<<4)]==1 && (Airport.iPlate[12+((ArrayPos.x-c)<<4)]&2)) || (Airport.iPlate[12+((ArrayPos.x-c)<<4)]&16)==0)
                                     break;
 
@@ -1510,7 +1514,8 @@ void PERSON::DoOneCustomerStep (void)
                         if (Sim.RoomBusy[ROOM_BELT_X1+n]==0 || Sim.RoomBusy[ROOM_BELT_X1+n]==1)
                         {
                            //log: hprintf ("Add Suitcase at n=%li..", n);
-                           for (SLONG c=0; c<SLONG(Airport.Runes.AnzEntries()); c++)
+                           SLONG c = 0;
+                           for (; c<SLONG(Airport.Runes.AnzEntries()); c++)
                               if (Airport.Runes[c].BrickId==(RUNE_2SHOP|0x10000000) && Airport.Runes[c].Par==ROOM_BELT_X1+n)
                               {
                                  State    = PERSON_2SHOP;

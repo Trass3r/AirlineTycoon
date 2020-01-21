@@ -82,8 +82,8 @@ CRouteBox::CRouteBox(BOOL bHandy, ULONG PlayerNum) : CStdRaum (bHandy, PlayerNum
    IsBuyable.FillWith(0);
 
    CRentRouten &qRRouten = Sim.Players.Players[(SLONG)PlayerNum].RentRouten;
-
-   for (SLONG d=Routen.AnzEntries()-1; d>=0; d--)
+   SLONG d = Routen.AnzEntries() - 1;
+   for (; d>=0; d--)
       if (Routen.IsInAlbum(d) && qRRouten.RentRouten[d].Rang==0)
          if (Routen[d].VonCity==(ULONG)Sim.HomeAirportId || Routen[d].NachCity==(ULONG)Sim.HomeAirportId)
             IsBuyable[d]=TRUE;
