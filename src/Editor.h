@@ -25,11 +25,11 @@ class CPlanePartRelation
       long  Note3;          // [CSV] dito
       long  zAdd;
       long  Noise;          // [CSV] Zusätzlicher Lärm
-      char *Slot;           // Dieser Slot wird benötigt (BCHLMR)
-      char *RulesOutSlots;  // Und diese Slots werden blockiert
+      const char* Slot;     // Dieser Slot wird benötigt (BCHLMR)
+      const char* RulesOutSlots; // Und diese Slots werden blockiert
 
    public:
-      CPlanePartRelation (long _Id, ULONG _FromBuildIndex, ULONG _ToBuildIndex, XY _Offset2d, XY _Offset3d, long _Note1, long _Note2, long _Note3, long _zAdd, long _Noise, char *_Slot, char *_RulesOutSlots)
+      CPlanePartRelation(long _Id, ULONG _FromBuildIndex, ULONG _ToBuildIndex, XY _Offset2d, XY _Offset3d, long _Note1, long _Note2, long _Note3, long _zAdd, long _Noise, const char* _Slot, const char* _RulesOutSlots)
       { Id=_Id; FromBuildIndex=_FromBuildIndex; ToBuildIndex=_ToBuildIndex; Offset2d=_Offset2d; Offset3d=_Offset3d; Note1=_Note1; Note2=_Note2; Note3=_Note3; zAdd=_zAdd; Noise=_Noise, Slot=_Slot; RulesOutSlots=_RulesOutSlots; }
 
       void    FromString (CString str);

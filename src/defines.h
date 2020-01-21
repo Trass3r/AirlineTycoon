@@ -70,6 +70,9 @@ typedef struct tagRECT
    LONG bottom;
 } 	RECT;
 
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
+
 #endif
 
 class CPoint : public tagPOINT

@@ -9,7 +9,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <io.h>
+//#include <io.h>
 #include <stdio.h>
 #include <time.h>
 #include "Abend.h"
@@ -468,11 +468,11 @@ BOOL CTakeOffApp::InitInstance(int argc, char* argv[])
 
    DoAppPath();
    gLanguage=LANGUAGE_D;
-   SLONG ifil=open (AppPath+"misc\\sabbel.dat", _O_RDONLY|_O_BINARY);
-   if (ifil>0)
+   FILE* ifil = fopen(AppPath + "misc\\sabbel.dat", "rb");
+   if (ifil)
    {
-      read (ifil, &gLanguage, sizeof (gLanguage));
-      close (ifil);
+      fread(&gLanguage, sizeof(gLanguage), 1, ifil);
+      fclose(ifil);
    }
 
    gPhysicalCdRomBitlist.Pump();
