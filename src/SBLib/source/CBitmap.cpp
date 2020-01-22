@@ -10,7 +10,7 @@ SB_CBitmapMain::~SB_CBitmapMain()
     for (std::list<SB_CBitmapCore>::iterator it = Bitmaps.begin(); it != Bitmaps.end(); ++it)
     {
         SDL_FreeSurface(it->lpDDSurface);
-        //SDL_DestroyTexture(it->Texture);
+        SDL_DestroyTexture(it->Texture);
     }
 }
 
@@ -23,7 +23,7 @@ unsigned long SB_CBitmapMain::CreateBitmap(SB_CBitmapCore** out, GfxLib* lib, __
     {
         core->lpDD = Renderer;
         core->lpDDSurface = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGB565, 0);
-        //core->Texture = SDL_CreateTextureFromSurface(Renderer, core->lpDDSurface);
+        core->Texture = SDL_CreateTextureFromSurface(Renderer, core->lpDDSurface);
         core->Size.x = core->lpDDSurface->w;
         core->Size.y = core->lpDDSurface->h;
         core->InitClipRect();
@@ -50,7 +50,7 @@ unsigned long SB_CBitmapMain::CreateBitmap(SB_CBitmapCore** out, long w, long h,
     SB_CBitmapCore* core = &Bitmaps.back();
     core->lpDD = Renderer;
     core->lpDDSurface = SDL_CreateRGBSurfaceWithFormat(0, w, h, 16, SDL_PIXELFORMAT_RGB565);
-    //core->Texture = NULL;
+    core->Texture = NULL;
     core->Size.x = w;
     core->Size.y = h;
     if ( !(flags & CREATE_USEALPHA) )
@@ -64,8 +64,8 @@ unsigned long SB_CBitmapMain::ReleaseBitmap(SB_CBitmapCore* core)
 {
     if (core->lpDDSurface)
         SDL_FreeSurface(core->lpDDSurface);
-    //if (core->Texture)
-    //    SDL_DestroyTexture(core->Texture);
+    if (core->Texture)
+        SDL_DestroyTexture(core->Texture);
     for (std::list<SB_CBitmapCore>::iterator it = Bitmaps.begin(); it != Bitmaps.end(); ++it)
     {
         if (&*it == core)
@@ -382,9 +382,12 @@ long SB_CPrimaryBitmap::Flip()
     if (Cursor)
         Cursor->FlipBegin();
 
-    //SDL_RenderPresent(lpDD);
-    SDL_BlitSurface(lpDDSurface, NULL, SDL_GetWindowSurface(Window), NULL);
-    SDL_UpdateWindowSurface(Window);
+    auto tempSurface = SDL_CreateRGBSurfaceWithFormat(0, 640, 480, 32, SDL_PIXELFORMAT_ARGB8888);
+    SDL_BlitSurface(lpDDSurface, nullptr, tempSurface, nullptr);
+    SDL_UpdateTexture(Texture, NULL, tempSurface->pixels, tempSurface->pitch);
+    SDL_FreeSurface(tempSurface);
+    SDL_RenderCopy(lpDD, Texture, NULL, NULL);
+    SDL_RenderPresent(lpDD);
 
     if (Cursor)
         Cursor->FlipEnd();
@@ -398,8 +401,10 @@ void SB_CPrimaryBitmap::SetPos(struct tagPOINT&)
 long SB_CPrimaryBitmap::Create(SDL_Renderer** out, SDL_Window* Wnd, unsigned short flags, long w, long h, unsigned char, unsigned short)
 {
     Window = Wnd;
-    //lpDD = SDL_CreateRenderer(Window, -1, SDL_RENDERER_SOFTWARE);
+    lpDD = SDL_CreateRenderer(Window, -1, 0);
+    SDL_RenderSetLogicalSize(lpDD, 640, 480);
     lpDDSurface = SDL_CreateRGBSurfaceWithFormat(0, w, h, 16, SDL_PIXELFORMAT_RGB565);
+    Texture = SDL_CreateTexture(lpDD, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, w, h);
     Size.x = w;
     Size.y = h;
     Cursor = NULL;
@@ -410,7 +415,7 @@ long SB_CPrimaryBitmap::Create(SDL_Renderer** out, SDL_Window* Wnd, unsigned sho
 
 unsigned long SB_CPrimaryBitmap::Release()
 {
-    //SDL_DestroyRenderer(lpDD);
+    SDL_DestroyRenderer(lpDD);
     SDL_DestroyWindow(Window);
     return 0;
 }

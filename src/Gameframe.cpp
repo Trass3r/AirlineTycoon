@@ -153,8 +153,6 @@ void MessagePump (void)
 //--------------------------------------------------------------------------------------------
 GameFrame::GameFrame()
 {
-   CRect  rect (0,0,640,480);
-
    pGLibPause = NULL;
    PauseFade  = 0;
 
@@ -163,12 +161,13 @@ GameFrame::GameFrame()
    if (DetectCurrentDisplayResolution().x<=640 || DetectCurrentDisplayResolution().y<=480)
       bFullscreen=TRUE;
 
-   SDL_Window* h = SDL_CreateWindow("Airline Tycoon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, rect.Width(), rect.Height(), bFullscreen ? SDL_WINDOW_FULLSCREEN : 0);
+   SDL_Window* h = SDL_CreateWindow("Airline Tycoon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 2*640, 2*480, bFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_RESIZABLE);
    if (!h)
    {
       MyMessageBox("ERROR", "CreateWindow failed");
       return;
    }
+   SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
    SDL_ShowWindow(h);
    SDL_UpdateWindowSurface(h);
    m_hWnd = h;
