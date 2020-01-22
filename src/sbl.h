@@ -168,7 +168,6 @@ public:
     unsigned long LineTo(long, long, class SB_CHardwarecolorHelper*);
     unsigned long Rectangle(const RECT*, class SB_CHardwarecolorHelper*);
     void InitClipRect(void);
-    void SetClipRect(const RECT*);
     void SetClipRect(const CRect&);
     void SetColorKey(unsigned long);
     virtual unsigned long Release(void);
@@ -185,7 +184,7 @@ public:
     unsigned long Line(long x1, long y1, long x2, long y2, DWORD color) { return Line(x1, y1, x2, y2, GetHardwarecolor(color)); }
     SLONG GetXSize() { return Size.x; }
     SLONG GetYSize() { return Size.y; }
-    RECT GetClipRect() { const SDL_Rect& r = lpDDSurface->clip_rect; return CRect(r.x, r.y, r.x + r.w, r.y + r.h); }
+    CRect GetClipRect() { const SDL_Rect& r = lpDDSurface->clip_rect; return CRect(r.x, r.y, r.x + r.w, r.y + r.h); }
     SDL_Surface* GetSurface() { return lpDDSurface; }
     SDL_PixelFormat* GetPixelFormat(void) { return lpDDSurface->format; }
 

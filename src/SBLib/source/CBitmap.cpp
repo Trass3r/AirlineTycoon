@@ -178,11 +178,6 @@ unsigned long SB_CBitmapCore::Line(long x1, long y1, long x2, long y2, class SB_
     return 0;
 }
 
-void SB_CBitmapCore::SetClipRect(const RECT* pRect)
-{
-    SetClipRect(*(const CRect*)pRect);
-}
-
 void SB_CBitmapCore::SetClipRect(const CRect& rect)
 {
    SDL_Rect clip = { rect.left, rect.top, rect.Width(), rect.Height() };

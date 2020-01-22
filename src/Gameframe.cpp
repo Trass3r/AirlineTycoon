@@ -130,8 +130,8 @@ void MessagePump (void)
          RECT srcRect = { 0, 0, 640, 480 };
          //VGACriticalSection.Lock();
          FrontSurf->Blt(&srcRect, pSpeedBm->GetSurface(), &srcRect, DDBLT_WAIT|DDBLT_ASYNC, NULL);
-         //FrontSurf->Blt(gMousePosition.x, gMousePosition.y, gCursorBm.pBitmap->GetSurface(), &CRect(0,0,32,32), DDBLTFAST_WAIT|DDBLTFAST_SRCCOLORKEY|DDBLTFAST_ASYNC);
-         //FrontSurf->Blt(&CRect(50+c%100, 100, 50+32+c%100, 132), gCursorBm.pBitmap->GetSurface(), &CRect(0,0,32,32), DDBLT_WAIT|DDBLT_KEYSRC|DDBLT_ASYNC, NULL);
+         //FrontSurf->Blt(gMousePosition.x, gMousePosition.y, gCursorBm.pBitmap->GetSurface(), CRect(0,0,32,32), DDBLTFAST_WAIT|DDBLTFAST_SRCCOLORKEY|DDBLTFAST_ASYNC);
+         //FrontSurf->Blt(CRect(50+c%100, 100, 50+32+c%100, 132), gCursorBm.pBitmap->GetSurface(), CRect(0,0,32,32), DDBLT_WAIT|DDBLT_KEYSRC|DDBLT_ASYNC, NULL);
          //VGACriticalSection.Unlock();
          c++;
 
