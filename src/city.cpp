@@ -243,7 +243,7 @@ ULONG CITIES::GetIdFromName (char *Name)
 //  SMPL: foreacharg (long, Value1, 0)
 //--------------------------------------------------------------------------------------------
 #define foreacharg(type, firstargname, finalvalue) \
-   if (va_list va_marker = (va_list)true) \
+      va_list va_marker; \
       for (long arghelper1=0, arghelper2=0, arghelper3=0; arghelper1==0; arghelper1=1) \
          for (type q##type=firstargname; arghelper2==0; arghelper2=1) \
             for (va_start (va_marker, firstargname); q##type!=finalvalue; q##type=va_arg(va_marker, type))

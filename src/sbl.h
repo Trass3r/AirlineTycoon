@@ -242,7 +242,7 @@ public:
     long Create(SDL_Renderer**, SDL_Window*, unsigned short, long, long, unsigned char, unsigned short);
     virtual unsigned long Release(void);
     long Flip(void);
-    void SetPos(struct tagPOINT&);
+    void SetPos(const struct tagPOINT&);
     struct IDirectDrawSurface* GetLastPage(void);
 
     void AssignCursor(SB_CCursor* c) { Cursor = c; }

@@ -59,7 +59,7 @@ CString RemoveAccents (CString str);
 SLONG   GetAnzBits (ULONG Flags);
 double  GetAlphaFromXY (XY Delta);
 void    DrawChart (SBBM &TipBm, ULONG Color, const FBUFFER<SLONG> &Values, SLONG MinValue, SLONG MaxValue, const XY &TopLeft, const XY &TopRight, const XY &BottomLeft, const XY &BottomRight);
-CString KorrigiereUmlaute (CString &Originaltext);
+CString KorrigiereUmlaute (const CString& Originaltext);
 //SLONG   ReadTimeStampCounter (void);
 __int64 StringToInt64 (const CString &String);
 BOOL    IsRoomBusy(UWORD RoomId, SLONG ExceptPlayer);

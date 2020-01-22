@@ -100,7 +100,7 @@ void CheckCString (CString *String)
 //--------------------------------------------------------------------------------------------
 //Korrigiert die Umlaute wegen dem schönen Windows-Doppelsystem
 //--------------------------------------------------------------------------------------------
-CString KorrigiereUmlaute (CString &OriginalText)
+CString KorrigiereUmlaute(const CString& OriginalText)
 {
    CString rc;
    int     c;

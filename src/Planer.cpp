@@ -733,9 +733,9 @@ void CPlaner::DoPollingStuff (void)
                    }
                }
 
-               if (Sim.Date==Date) Limit (SLONG(Sim.GetHour()+2), (SLONG)Time, (SLONG)24l);
-                              else Limit (SLONG(0), (SLONG)Time, (SLONG)24l);
-               Limit ((SLONG)Sim.Date, (SLONG)Date, SLONG(Sim.Date+6));
+               if (Sim.Date==Date) Limit (SLONG(Sim.GetHour()+2), Time, 24l);
+                              else Limit (0l, Time, 24l);
+               Limit ((SLONG)Sim.Date, Date, SLONG(Sim.Date+6));
 
                if (Time==24)
                {
@@ -827,8 +827,8 @@ void CPlaner::DoPollingStuff (void)
                    }
                }
 
-               if (Sim.Date==Date) Limit (SLONG(Sim.GetHour()+2), (SLONG)Time, (SLONG)24l);
-                              else Limit (SLONG(0), (SLONG)Time, (SLONG)24l);
+               if (Sim.Date==Date) Limit (SLONG(Sim.GetHour()+2), Time, 24l);
+                              else Limit (0l, Time, 24l);
 
                if (Time==24)
                {

@@ -5,11 +5,14 @@
 #include "Checkup.h"
 #include "Sabotage.h"
 #include "AtNet.h"
+#if _WIN32
 #include <direct.h>
-
+#else
+#include <sys/stat.h>
+#endif
                             //Für Menschen     Für Computer
                             //Money   Credit   Money    Credit
-static long InitMoney [] = { 1500000,        0, 2000000,        0,   //DIFF_FREEGAME
+const long InitMoney[] =   { 1500000,        0, 2000000,        0,   //DIFF_FREEGAME
                              5000000,        0,  200000,        0,   //DIFF_TUTORIAL
                              5000000,        0,  500000,        0,   //FIRST
                              3000000,        0, 1000000,        0,   //DIFF_EASY    

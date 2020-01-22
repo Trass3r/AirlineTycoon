@@ -45,7 +45,6 @@
 #include "World.h"
 
 #include "glTitel.h"
-#include <process.h>
 #include "cd_prot.h"
 
 #include "AtNet.h"
