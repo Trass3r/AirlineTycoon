@@ -350,17 +350,17 @@ public:
 
     SB_CFont(void);
     ~SB_CFont(void);
-    void DrawTextA(class SB_CBitmapCore*, long, long, char*, long = 0, bool = false);
-    void DrawTextWithTabs(class SB_CBitmapCore*, long, long, char*, long = 0, bool = false);
-    long DrawTextBlock(class SB_CBitmapCore*, struct tagRECT*, char*, long = 0, long = 0, bool = false);
-    long PreviewTextBlock(class SB_CBitmapCore*, struct tagRECT*, char*, long = 0, long = 0, bool = false);
-    long DrawTextBlock(class SB_CBitmapCore*, long, long, long, long, char*, long = 0, long = 0, bool = false);
-    long PreviewTextBlock(class SB_CBitmapCore*, long, long, long, long, char*, long = 0, long = 0, bool = false);
-    long GetWidthAt(char*, long, char);
-    long GetWordLength(char*, long);
-    long GetWidth(char*, long);
+    void DrawTextA(class SB_CBitmapCore*, long, long, const char*, long = 0, bool = false);
+    void DrawTextWithTabs(class SB_CBitmapCore*, long, long, const char*, long = 0, bool = false);
+    long DrawTextBlock(class SB_CBitmapCore*, struct tagRECT*, const char*, long = 0, long = 0, bool = false);
+    long PreviewTextBlock(class SB_CBitmapCore*, struct tagRECT*, const char*, long = 0, long = 0, bool = false);
+    long DrawTextBlock(class SB_CBitmapCore*, long, long, long, long, const char*, long = 0, long = 0, bool = false);
+    long PreviewTextBlock(class SB_CBitmapCore*, long, long, long, long, const char*, long = 0, long = 0, bool = false);
+    long GetWidthAt(const char*, long, char);
+    long GetWordLength(const char*, long);
+    long GetWidth(const char*, long);
     long GetWidth(char);
-    bool Load(SDL_Renderer*, char*, struct HPALETTE__* = NULL);
+    bool Load(SDL_Renderer*, const char*, struct HPALETTE__* = NULL);
     bool CopyMemToSurface(struct HPALETTE__*);
     void SetTabulator(struct tagTabs*, unsigned long);
 
@@ -372,7 +372,7 @@ protected:
     bool GetSurface(struct _DDSURFACEDESC*);
     void ReleaseSurface(struct _DDSURFACEDESC*);
     bool DrawChar(char, bool);
-    bool DrawWord(char*, long);
+    bool DrawWord(const char*, long);
     unsigned char* GetDataPtr(void);
     bool CreateFontSurface(SDL_Renderer*);
     bool CopyBitmapToMem(struct tagCreateFont*);
