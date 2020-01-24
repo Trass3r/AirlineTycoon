@@ -9,6 +9,11 @@
 #define _WINSOCKAPI_   /* Prevent inclusion of winsock.h in windows.h */
 #include <Windows.h>
 #endif
+
+#if !_MSC_VER
+#define _Printf_format_string_
+#endif
+
 #include <math.h>
 #include <SDL.h>
 #include <SDL_ttf.h>

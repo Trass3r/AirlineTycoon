@@ -35,7 +35,7 @@ void HDU::Close()
     Log = NULL;
 }
 
-void HDU::HercPrintf(int, char* format, ...)
+void HDU::HercPrintf(int, _Printf_format_string_ const char* format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -45,7 +45,7 @@ void HDU::HercPrintf(int, char* format, ...)
     fflush(Log);
 }
 
-void HDU::HercPrintf(char* format, ...)
+void HDU::HercPrintf(_Printf_format_string_ const char* format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -60,12 +60,12 @@ void here(char *file, long line)
     Hdu.HercPrintf(0, "Here in %s, line %li", file, line);
 }
 
-long TeakLibW_Exception(char* file, long line, const char* format, ...)
+long TeakLibW_Exception(char* file, long line, _Printf_format_string_ const char* format, ...)
 {
     char buffer[128];
     va_list args;
     va_start(args, format);
-    vsprintf(buffer, format, args);
+    vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
     //MessageBeep(0);
     //MessageBeep(0x30u);

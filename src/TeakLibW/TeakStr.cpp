@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
-char* bprintf(char const* format, ...)
+char* bprintf(_Printf_format_string_ char const* format, ...)
 {
     static char buffer[8192];
     va_list args;
     va_start (args, format);
-    vsprintf (buffer, format, args);
+    vsnprintf(buffer, sizeof(buffer), format, args);
     va_end (args);
     return buffer;
 }

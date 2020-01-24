@@ -1,7 +1,7 @@
 #pragma once
 
 extern void memswap(void*, void*, ULONG);
-extern char* bprintf(char const*, ...);
+extern char* bprintf(_Printf_format_string_ const char*, ...);
 extern char* bitoa(long);
 extern void here(char*, long);
 
@@ -14,7 +14,8 @@ extern const char* ExcStrangeMem;
 
 #define FNL 0, 0
 
-extern long TeakLibW_Exception(char*, long, const char*, ...);
+[[noreturn]]
+extern long TeakLibW_Exception(char*, long, _Printf_format_string_ const char*, ...);
 extern char* TeakStrRemoveCppComment(char*);
 extern char* TeakStrRemoveEndingCodes(char*, char const*);
 extern unsigned char GerToLower(unsigned char);
@@ -780,8 +781,8 @@ public:
     void Close();
     void Disable();
     void ClearScreen();
-    void HercPrintf(int, char* Format, ...);
-    void HercPrintf(char* Format, ...);
+    void HercPrintf(int, _Printf_format_string_ const char* Format, ...);
+    void HercPrintf(_Printf_format_string_ const char* Format, ...);
     void LogPosition(const char*, int);
 
 private:
