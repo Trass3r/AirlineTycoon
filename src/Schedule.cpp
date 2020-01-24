@@ -700,7 +700,7 @@ void CFlugplanEintrag::BookFlight (CPlane *Plane, SLONG PlayerNum)
          for (c=Anz=0; c<4; c++)
             if (Sim.Players.Players[c].HasFlownRoutes) Anz++;
 
-         Sim.Headlines.AddOverride (1, bprintf ((LPCTSTR)(CString)StandardTexte.GetS (TOKEN_MISC, 2010+Anz), Sim.Players.Players[(SLONG)PlayerNum].AirlineX, Sim.Players.Players[(SLONG)PlayerNum].NameX), GetIdFromString ("1")+Anz+PlayerNum*100, 60);
+         Sim.Headlines.AddOverride (1, bprintf (StandardTexte.GetS (TOKEN_MISC, 2010+Anz), Sim.Players.Players[PlayerNum].AirlineX.c_str(), Sim.Players.Players[PlayerNum].NameX.c_str()), GetIdFromString ("1")+Anz+PlayerNum*100, 60);
 
          Sim.Players.Players[(SLONG)PlayerNum].HasFlownRoutes = TRUE;
       }
@@ -736,7 +736,7 @@ void CFlugplanEintrag::BookFlight (CPlane *Plane, SLONG PlayerNum)
       }
       else
       {
-         qPlayer.Messages.AddMessage (BERATERTYP_GIRL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2313), Plane->Name));
+         qPlayer.Messages.AddMessage (BERATERTYP_GIRL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2313), Plane->Name.c_str()));
       }
 
       //Add-On Mission 9
@@ -758,7 +758,7 @@ void CFlugplanEintrag::BookFlight (CPlane *Plane, SLONG PlayerNum)
       {
          pn=Sim.Players.Players[qPlayer.PlayerNum].WerbeBroschuere;
          if (Sim.Players.Players[qPlayer.PlayerNum].Owner==0)
-            Sim.Players.Players[qPlayer.PlayerNum].Messages.AddMessage (BERATERTYP_GIRL, bprintf(StandardTexte.GetS (TOKEN_ADVICE, 2357), Plane->Name, Sim.Players.Players[pn].AirlineX));
+            Sim.Players.Players[qPlayer.PlayerNum].Messages.AddMessage (BERATERTYP_GIRL, bprintf(StandardTexte.GetS (TOKEN_ADVICE, 2357), Plane->Name.c_str(), Sim.Players.Players[pn].AirlineX.c_str()));
       }
 
       PLAYER &qPlayerX = Sim.Players.Players[pn];

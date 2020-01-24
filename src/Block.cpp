@@ -730,7 +730,7 @@ void BLOCK::Refresh (SLONG PlayerNum, BOOL StyleType)
                   Bitmap.PrintAt (StandardTexte.GetS (TOKEN_PLANE, 1000), FontSmallBlack, TEC_FONT_LEFT, ClientArea+XY(2,25), ClientArea+XY(172,170));
                   Bitmap.PrintAt (StandardTexte.GetS (TOKEN_PLANE, 1017), FontSmallBlack, TEC_FONT_LEFT, ClientArea+XY(2,37), ClientArea+XY(172,170));
                   Bitmap.PrintAt (StandardTexte.GetS (TOKEN_PLANE, 1001), FontSmallBlack, TEC_FONT_LEFT, ClientArea+XY(2,37+11), ClientArea+XY(172,170));
-                  Bitmap.PrintAt (bprintf ("%li (%li)", (LPCTSTR)qPlane.MaxPassagiere, (LPCTSTR)qPlane.MaxPassagiereFC), FontSmallBlack, TEC_FONT_LEFT, ClientArea+XY(75,25), ClientArea+XY(172,170));
+                  Bitmap.PrintAt (bprintf ("%li (%li)", qPlane.MaxPassagiere, qPlane.MaxPassagiereFC), FontSmallBlack, TEC_FONT_LEFT, ClientArea+XY(75,25), ClientArea+XY(172,170));
                   Bitmap.PrintAt (Einheiten[EINH_T].bString (qPlane.ptPassagiere/10), FontSmallBlack, TEC_FONT_LEFT, ClientArea+XY(75,25+11), ClientArea+XY(172,170));
                   Bitmap.PrintAt (Einheiten[EINH_KM].bString (qPlane.ptReichweite), FontSmallBlack, TEC_FONT_LEFT, ClientArea+XY(75,37+11), ClientArea+XY(172,170));
 
@@ -1230,8 +1230,8 @@ switch_again:
 
                   //Ausführlich von A nach B
                   Bitmap.PrintAt (bprintf ("%s - %s", 
-                                  Cities[qAuftrag.VonCity].Name,
-                                  Cities[qAuftrag.NachCity].Name),
+                                  (LPCTSTR)Cities[qAuftrag.VonCity].Name,
+                                  (LPCTSTR)Cities[qAuftrag.NachCity].Name),
                                   FontSmallBlack, TEC_FONT_LEFT, ClientAreaB+XY(0,1), ClientAreaB+XY(172,168));
 
                   if (PageB==0)
@@ -1292,8 +1292,8 @@ switch_again:
 
                   //Ausführlich von A nach B
                   Bitmap.PrintAt (bprintf ("%s - %s", 
-                                  Cities[qRoute.VonCity].Name,
-                                  Cities[qRoute.NachCity].Name),
+                                  (LPCTSTR)Cities[qRoute.VonCity].Name,
+                                  (LPCTSTR)Cities[qRoute.NachCity].Name),
                                   FontSmallBlack, TEC_FONT_LEFT, ClientAreaB+XY(0,1), ClientAreaB+XY(172,168));
                        
                   if (PageB==0)
@@ -1395,8 +1395,8 @@ switch_again:
 
                   //Ausführlich von A nach B
                   Bitmap.PrintAt (bprintf ("%s - %s", 
-                                  Cities[qFracht.VonCity].Name,
-                                  Cities[qFracht.NachCity].Name),
+                                  (LPCTSTR)Cities[qFracht.VonCity].Name,
+                                  (LPCTSTR)Cities[qFracht.NachCity].Name),
                                   FontSmallBlack, TEC_FONT_LEFT, ClientAreaB+XY(0,1), ClientAreaB+XY(172,168));
 
                   if (PageB==0)

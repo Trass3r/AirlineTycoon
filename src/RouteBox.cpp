@@ -449,12 +449,12 @@ void CRouteBox::RepaintTip (void)
             for (c=0; c<4; c++)
                if (Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang)
                   if (Sim.Players.Players[(SLONG)PlayerNum].HasBerater(BERATERTYP_INFO))
-                     TipBm.PrintAt ((CString)bprintf ("%li. %s (%li%%)", (LPCTSTR)Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang, (LPCTSTR)Sim.Players.Players[c].AirlineX, (LPCTSTR)Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].RoutenAuslastung), FontSmallBlack, TEC_FONT_LEFT, XY(4,114+Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang*12), XY(172,166));
+                     TipBm.PrintAt ((CString)bprintf ("%li. %s (%li%%)", Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang, (LPCTSTR)Sim.Players.Players[c].AirlineX, Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].RoutenAuslastung), FontSmallBlack, TEC_FONT_LEFT, XY(4,114+Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang*12), XY(172,166));
                   else
                      if (c==PlayerNum)
-                        TipBm.PrintAt ((CString)bprintf ("%li. %s", (LPCTSTR)Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang, (LPCTSTR)Sim.Players.Players[c].AirlineX), FontSmallBlack, TEC_FONT_LEFT, XY(4,114+Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang*12), XY(172,166));
+                        TipBm.PrintAt ((CString)bprintf ("%li. %s", Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang, (LPCTSTR)Sim.Players.Players[c].AirlineX), FontSmallBlack, TEC_FONT_LEFT, XY(4,114+Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang*12), XY(172,166));
                      else
-                        TipBm.PrintAt ((CString)bprintf ("%li. %s", (LPCTSTR)Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang, StandardTexte.GetS (TOKEN_ROUTE, 997)), FontSmallBlack, TEC_FONT_LEFT, XY(4,114+Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang*12), XY(172,166));
+                        TipBm.PrintAt ((CString)bprintf ("%li. %s", Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang, StandardTexte.GetS (TOKEN_ROUTE, 997)), FontSmallBlack, TEC_FONT_LEFT, XY(4,114+Sim.Players.Players[c].RentRouten.RentRouten[(SLONG)Routen(CurrentTip)].Rang*12), XY(172,166));
             break;
          }
    }

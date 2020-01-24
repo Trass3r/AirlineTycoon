@@ -690,7 +690,7 @@ void Options::OnLButtonDown(UINT nFlags, CPoint point)
             {
                if (Sim.bNetwork)
                {
-                  Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7022), Sim.Players.Players[Sim.localPlayer].NameX));
+                  Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7022), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
                   gNetwork.DisConnect ();
                   Sim.bNetwork = false;
                }

@@ -3055,7 +3055,7 @@ void PLAYER::RobotPlanRoutes(void)
                //Spieler hat die Faxen dicke und will die Route nicht mehr:
                if (Sim.Players.Players[Sim.localPlayer].HasBerater (BERATERTYP_INFO))
                {
-                  Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9006), NameX, AirlineX, (LPCTSTR)Cities[Routen[c].VonCity].Name, (LPCTSTR)Cities[Routen[c].NachCity].Name));
+                  Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9006), NameX.c_str(), AirlineX.c_str(), (LPCTSTR)Cities[Routen[c].VonCity].Name, (LPCTSTR)Cities[Routen[c].NachCity].Name));
                }
 
                for (e=0; e<4; e++)
@@ -3964,7 +3964,7 @@ void PLAYER::RobotExecuteAction(void)
 
                   if (dislike==Sim.localPlayer && Sim.Players.Players[Sim.localPlayer].HasBerater (BERATERTYP_INFO))
                   {
-                     Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9005), NameX, AirlineX, Anz));
+                     Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9005), NameX.c_str(), AirlineX.c_str(), Anz));
                   }
                }
             }
@@ -4105,7 +4105,7 @@ void PLAYER::RobotExecuteAction(void)
                   {
                      if (Sim.Players.Players[Sim.localPlayer].HasBerater (BERATERTYP_INFO))
                      {
-                        Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9000), NameX, AirlineX, Sim.UsedPlanes[0x1000000+c].CalculatePrice()));
+                        Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9000), NameX.c_str(), AirlineX.c_str(), Sim.UsedPlanes[0x1000000+c].CalculatePrice()));
                      }
 
                      if (Planes.GetNumFree()==0)
@@ -4182,7 +4182,7 @@ void PLAYER::RobotExecuteAction(void)
             OwnsAktien[PlayerNum]+=(NeueAktien-MarktAktien);
             if (Sim.Players.Players[Sim.localPlayer].HasBerater (BERATERTYP_INFO))
             {
-               Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9004), NameX, AirlineX, NeueAktien));
+               Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9004), NameX.c_str(), AirlineX.c_str(), NeueAktien));
             }
 
             if (PlayerNum!=3 || RobotUse(ROBOT_USE_REBUYSHARES))
@@ -4673,7 +4673,7 @@ void PLAYER::RobotExecuteAction(void)
                {
                   if (Sim.Players.Players[Sim.localPlayer].HasBerater (BERATERTYP_INFO))
                   {
-                     Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9000), NameX, AirlineX, Sim.UsedPlanes[0x1000000+c].CalculatePrice()));
+                     Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9000), NameX.c_str(), AirlineX.c_str(), Sim.UsedPlanes[0x1000000+c].CalculatePrice()));
                   }
 
                   if (Planes.GetNumFree()==0)
@@ -4734,7 +4734,7 @@ void PLAYER::RobotExecuteAction(void)
                {
                   if (TafelData.Gate[n].Player==Sim.localPlayer && Sim.Players.Players[Sim.localPlayer].HasBerater (BERATERTYP_INFO))
                   {
-                     Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9001), NameX, AirlineX));
+                     Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9001), NameX.c_str(), AirlineX.c_str()));
                   }
                   TafelData.Gate[n].Preis += TafelData.Gate[n].Preis/10;
                   TafelData.Gate[n].Player = PlayerNum;
@@ -4754,7 +4754,7 @@ void PLAYER::RobotExecuteAction(void)
                   {
                      if (TafelData.City[c].Player==Sim.localPlayer && Sim.Players.Players[Sim.localPlayer].HasBerater (BERATERTYP_INFO))
                      {
-                        Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9002), NameX, AirlineX, (LPCTSTR)Cities[TafelData.City[c].ZettelId].Name));
+                        Sim.Players.Players[Sim.localPlayer].Messages.AddMessage (BERATERTYP_INFO, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 9002), NameX.c_str(), AirlineX.c_str(), (LPCTSTR)Cities[TafelData.City[c].ZettelId].Name));
                      }
                      TafelData.City[c].Preis += TafelData.City[c].Preis/10;
                      TafelData.City[c].Player = PlayerNum;
@@ -5108,9 +5108,9 @@ void PLAYER::RandomBeraterMessage (void)
          {
             Workers.Workers[d].WarnedToday=TRUE;
 
-            if (Workers.Workers[d].Typ<WORKER_PILOT)       Messages.AddMessage (BERATERTYP_PERSONAL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2200+Workers.Workers[d].Geschlecht*10), Workers.Workers[d].Name));
-            if (Workers.Workers[d].Typ==WORKER_PILOT)      Messages.AddMessage (BERATERTYP_PERSONAL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2201+Workers.Workers[d].Geschlecht*10), Workers.Workers[d].Name));
-            if (Workers.Workers[d].Typ==WORKER_STEWARDESS) Messages.AddMessage (BERATERTYP_PERSONAL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2202+Workers.Workers[d].Geschlecht*10), Workers.Workers[d].Name));
+            if (Workers.Workers[d].Typ<WORKER_PILOT)       Messages.AddMessage (BERATERTYP_PERSONAL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2200+Workers.Workers[d].Geschlecht*10), Workers.Workers[d].Name.c_str()));
+            if (Workers.Workers[d].Typ==WORKER_PILOT)      Messages.AddMessage (BERATERTYP_PERSONAL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2201+Workers.Workers[d].Geschlecht*10), Workers.Workers[d].Name.c_str()));
+            if (Workers.Workers[d].Typ==WORKER_STEWARDESS) Messages.AddMessage (BERATERTYP_PERSONAL, bprintf (StandardTexte.GetS (TOKEN_ADVICE, 2202+Workers.Workers[d].Geschlecht*10), Workers.Workers[d].Name.c_str()));
          }
       }
    }

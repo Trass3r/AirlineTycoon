@@ -46,23 +46,23 @@ void CBench::Report (void)
    GameTime.Stop();
    hprintf ("CBench - Report");
    hprintf ("---------------------------------------");
-   hprintf (" GameTime  : %15s.000 cycles", Insert1000erDots(SLONG(GameTime)));
-   hprintf (" BlitTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(BlitTime)), SLONG(BlitTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
-   hprintf (" FlipTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(FlipTime)), SLONG(FlipTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
-   hprintf (" FXTime    : %15s.000 cycles", Insert1000erDots(SLONG(FXTime)));
-   hprintf (" InitTime  : %15s.000 cycles", Insert1000erDots(SLONG(InitTime)));
-   hprintf (" DiskTime  : %15s.000 cycles", Insert1000erDots(SLONG(DiskTime)));
-   hprintf (" TextTime  : %15s.000 cycles", Insert1000erDots(SLONG(TextTime)));
-   hprintf (" ClearTime : %15s.000 cycles", Insert1000erDots(SLONG(ClearTime)));
-   hprintf (" SortTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(SortTime)), SLONG(SortTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
-   hprintf (" WalkTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(WalkTime)), SLONG(WalkTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
-   hprintf (" KITime    : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(KITime)), SLONG(KITime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
-   hprintf (" WaitTime  : %15s.000 cycles", Insert1000erDots(SLONG(WaitTime)));
-   hprintf (" AdminTime : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(AdminTime)), SLONG(AdminTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
-   hprintf (" MiscTime1 : %15s.000 cycles", Insert1000erDots(SLONG(MiscTime1)));
-   hprintf (" MiscTime2 : %15s.000 cycles", Insert1000erDots(SLONG(MiscTime2)));
+   hprintf (" GameTime  : %15s.000 cycles", Insert1000erDots(SLONG(GameTime)).c_str());
+   hprintf (" BlitTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(BlitTime)).c_str(), SLONG(BlitTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
+   hprintf (" FlipTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(FlipTime)).c_str(), SLONG(FlipTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
+   hprintf (" FXTime    : %15s.000 cycles", Insert1000erDots(SLONG(FXTime)).c_str());
+   hprintf (" InitTime  : %15s.000 cycles", Insert1000erDots(SLONG(InitTime)).c_str());
+   hprintf (" DiskTime  : %15s.000 cycles", Insert1000erDots(SLONG(DiskTime)).c_str());
+   hprintf (" TextTime  : %15s.000 cycles", Insert1000erDots(SLONG(TextTime)).c_str());
+   hprintf (" ClearTime : %15s.000 cycles", Insert1000erDots(SLONG(ClearTime)).c_str());
+   hprintf (" SortTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(SortTime)).c_str(), SLONG(SortTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
+   hprintf (" WalkTime  : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(WalkTime)).c_str(), SLONG(WalkTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
+   hprintf (" KITime    : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(KITime)).c_str(), SLONG(KITime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
+   hprintf (" WaitTime  : %15s.000 cycles", Insert1000erDots(SLONG(WaitTime)).c_str());
+   hprintf (" AdminTime : %15s.000 cycles = %.2f %% ", Insert1000erDots(SLONG(AdminTime)).c_str(), SLONG(AdminTime)*100.0/(SLONG(GameTime)-SLONG(InitTime)));
+   hprintf (" MiscTime1 : %15s.000 cycles", Insert1000erDots(SLONG(MiscTime1)).c_str());
+   hprintf (" MiscTime2 : %15s.000 cycles", Insert1000erDots(SLONG(MiscTime2)).c_str());
    hprintf ("---------------------------------------");
-   hprintf (" Missing   : %15s.000 cycles = %.2f %% ", Insert1000erDots(GetMissing()), GetMissing()*100.0/(SLONG(GameTime)-SLONG(InitTime)));
+   hprintf (" Missing   : %15s.000 cycles = %.2f %% ", Insert1000erDots(GetMissing()).c_str(), GetMissing()*100.0/(SLONG(GameTime)-SLONG(InitTime)));
    GameTime.Start();
 }
 
@@ -1440,7 +1440,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
             CheatBerater^=1;
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7010), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7010), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
          }
       }
 
@@ -1518,7 +1518,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
             qPlayer.Money+=10000000;
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7011), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7011), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
             Sim.SendSimpleMessage (ATNET_CHEAT, NULL, Sim.localPlayer, 0);
          }
       }
@@ -1543,7 +1543,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
             qPlayer.Money+=1000000000;
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7011), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7011), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
             Sim.SendSimpleMessage (ATNET_CHEAT, NULL, Sim.localPlayer, 0);
          }
       }
@@ -1590,7 +1590,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7015), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7015), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
             Sim.SendSimpleMessage (ATNET_CHEAT, NULL, Sim.localPlayer, 0);
          }
       }
@@ -1614,7 +1614,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7016), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7016), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
             Sim.SendSimpleMessage (ATNET_CHEAT, NULL, Sim.localPlayer, 0);
          }
       }
@@ -1638,7 +1638,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
             qPlayer.ReformIcons ();
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7012), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7012), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
          }
       }
 
@@ -1657,7 +1657,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
             qPlayer.Credit=0;
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7013), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7013), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
             Sim.SendSimpleMessage (ATNET_CHEAT, NULL, Sim.localPlayer, 1);
          }
       }
@@ -1676,7 +1676,7 @@ void GameFrame::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
             qPlayer.Image=1000;
             CheatSound ();
 
-            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7014), Sim.Players.Players[Sim.localPlayer].NameX));
+            Sim.SendChatBroadcast (bprintf (StandardTexte.GetS (TOKEN_MISC, 7014), Sim.Players.Players[Sim.localPlayer].NameX.c_str()));
             Sim.SendSimpleMessage (ATNET_CHEAT, NULL, Sim.localPlayer, 2);
          }
       }
