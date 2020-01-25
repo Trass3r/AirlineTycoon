@@ -44,8 +44,8 @@ void KLACKER::Clear (void)
 {
    memset (Soll, 0, 24*16);
 
-   for (SLONG c=0; c<16; c++)
-      LineDisabled[c]=false;
+   for (bool & c : LineDisabled)
+      c = false;
 }
 
 //--------------------------------------------------------------------------------------------

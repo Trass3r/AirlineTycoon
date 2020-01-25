@@ -640,10 +640,10 @@ void SIM::ChooseStartup (BOOL GameModeQuick)
       Sim.StatnewDays       = 7;
       Sim.DropDownPosY      = 0;
 
-	   for (short p = 0 ; p < 3 ; p++)
+	   for (auto & p : Sim.StatiArray)
 	      for (short i = 0 ; i < 16; i++)
 	      {
-		      Sim.StatiArray[p][i]=true;
+		      p[i]=true;
 	      }
    }
 
@@ -1345,7 +1345,7 @@ void SIM::DoTimeStep (void)
             Message << rChkPersonRandCreate << rChkPersonRandMisc << rChkHeadlineRand;
             Message << rChkLMA << rChkRBA << rChkFrachen << rChkGeneric;
 
-            for (long c=0; c<MAX_CITIES; c++) Message << rChkAA[c];
+            for (unsigned long c : rChkAA) Message << c;
             for (c=0; c<4; c++) Message;
             for (c=0; c<4; c++)
                for (d=0; d<5; d++)
@@ -3841,12 +3841,12 @@ void SIM::SaveHighscores (void)
    CString  str;
    TEAKFILE OutputFile (AppPath+"misc\\xmlmap.fla", TEAKFILE_WRITE);
 
-   for (long c=0; c<6; c++)
+   for (auto & Highscore : Highscores)
    {
-      OutputFile.Write ((UBYTE*)(LPCTSTR)Highscores[c].Name, Highscores[c].Name.GetLength());
+      OutputFile.Write ((UBYTE*)(LPCTSTR)Highscore.Name, Highscore.Name.GetLength());
       OutputFile.Write ((UBYTE*)";", 1);
 
-      str = bprintf ("%lu;", Highscores[c].UniqueGameId2);
+      str = bprintf ("%lu;", Highscore.UniqueGameId2);
       OutputFile.Write ((UBYTE*)(LPCTSTR)str, str.GetLength());
 
       __int64 k1 = rand()%256 + rand()%256*256 + rand()%256*65536 + rand()%256*65536*256;
@@ -3855,11 +3855,11 @@ void SIM::SaveHighscores (void)
       __int64 k4;
       __int64 k5;
 
-      k4 = k5 = Highscores[c].Score;
+      k4 = k5 = Highscore.Score;
       k4 ^= (k1^k3);
       k5 ^= k2;
 
-      if (Highscores[c].Score==0) k1=k2=k3=k4=k5=0;
+      if (Highscore.Score==0) k1=k2=k3=k4=k5=0;
 
       str = bprintf ("%I64i;", k1);
       OutputFile.Write ((UBYTE*)(LPCTSTR)str, str.GetLength());
@@ -3890,7 +3890,7 @@ void SIM::LoadHighscores (void)
          char Buffer[8192];
          TEAKFILE OutputFile (AppPath+"misc\\xmlmap.fla", TEAKFILE_READ);
 
-         for (long c=0; c<6; c++)
+         for (auto & Highscore : Highscores)
          {
             OutputFile.ReadLine (Buffer, 8192);
 
@@ -3899,8 +3899,8 @@ void SIM::LoadHighscores (void)
                sprintf (Buffer, bprintf(" %s", Buffer));
             }
       
-            Highscores[c].Name = strtok (Buffer, ";");
-            Highscores[c].UniqueGameId2 = atoi (strtok (NULL, ";"));
+            Highscore.Name = strtok (Buffer, ";");
+            Highscore.UniqueGameId2 = atoi (strtok (NULL, ";"));
 
             __int64 k1 = _atoi64 (strtok (NULL, ";"));
             __int64 k2 = _atoi64 (strtok (NULL, ";"));
@@ -3909,9 +3909,9 @@ void SIM::LoadHighscores (void)
             __int64 k5 = _atoi64 (strtok (NULL, ";"));
 
             if ((k4^k1^k3) == (k5^k2))
-               Highscores[c].Score = k5^k2;
+               Highscore.Score = k5^k2;
             else
-               Highscores[c].Score = 0;
+               Highscore.Score = 0;
          }
       }
    }

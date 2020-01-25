@@ -1722,7 +1722,7 @@ void PumpNetwork (void)
                    Message >> rPersonRandCreate >> rPersonRandMisc >> rHeadlineRand;
                    Message >> rLMA >> rRBA >> rFrachen >> rGeneric;
 
-                   for (long c=0; c<MAX_CITIES; c++) Message >> rAA[c];
+                   for (unsigned long & c : rAA) Message >> c;
                    for (c=0; c<20; c++) Message >> rActionId[c];
 
 #ifdef _DEBUG

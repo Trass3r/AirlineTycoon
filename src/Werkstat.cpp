@@ -423,10 +423,10 @@ void CWerkstatt::OnPaint()
    SP_Schleim.BlitAtT (RoomBm);
 
    if (Sim.Slimed!=-1)
-      for (SLONG c=0; c<5; c++)
+      for (auto & c : SP_Blase)
       {
-         SP_Blase[c].Pump ();
-         SP_Blase[c].BlitAtT (RoomBm);
+         c.Pump ();
+         c.BlitAtT (RoomBm);
       }
 
    if (!(Sim.Players.Players[(SLONG)PlayerNum].SecurityFlags&(1<<7)))

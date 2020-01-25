@@ -656,9 +656,9 @@ CEditor::CEditor(BOOL bHandy, ULONG PlayerNum) : CStdRaum (bHandy, PlayerNum, "E
          str="Id;From;To;Offset2dX;Offset2dY;Offset3dX;Offset3dY;Note1;Note2;Note3;Noise";
          file << str << std::endl;
 
-         for (long c=0; c<sizeof(gPlanePartRelations)/sizeof(gPlanePartRelations[0]); c++)
+         for (auto & gPlanePartRelation : gPlanePartRelations)
          {
-            str = gPlanePartRelations[c].ToString ();
+            str = gPlanePartRelation.ToString ();
             file << str << std::endl;
          }
       }
@@ -670,9 +670,9 @@ CEditor::CEditor(BOOL bHandy, ULONG PlayerNum) : CStdRaum (bHandy, PlayerNum, "E
          str="Id;ShortName;Cost;Weight;Power;Noise;Wartung;Passagiere;Verbrauch";
          file << str << std::endl;
 
-         for (long c=0; c<sizeof(gPlaneBuilds)/sizeof(gPlaneBuilds[0]); c++)
+         for (auto & gPlaneBuild : gPlaneBuilds)
          {
-            str = gPlaneBuilds[c].ToString ();
+            str = gPlaneBuild.ToString ();
             file << str << std::endl;
          }
       }
@@ -689,13 +689,13 @@ CEditor::CEditor(BOOL bHandy, ULONG PlayerNum) : CStdRaum (bHandy, PlayerNum, "E
 
          file >> str;
 
-         for (long c=0; c<sizeof(gPlanePartRelations)/sizeof(gPlanePartRelations[0]); c++)
+         for (auto & gPlanePartRelation : gPlanePartRelations)
          {
             file >> str;
             long id=atol(str.c_str());
 
-            if (gPlanePartRelations[c].Id!=id) hprintf (0, "Id mismatch: %li vs %li!", gPlanePartRelations[c].Id, id);
-            gPlanePartRelations[c].FromString (str);
+            if (gPlanePartRelation.Id!=id) hprintf (0, "Id mismatch: %li vs %li!", gPlanePartRelation.Id, id);
+            gPlanePartRelation.FromString (str);
          }
       }
 
@@ -705,13 +705,13 @@ CEditor::CEditor(BOOL bHandy, ULONG PlayerNum) : CStdRaum (bHandy, PlayerNum, "E
 
          file >> str;
 
-         for (long c=0; c<sizeof(gPlaneBuilds)/sizeof(gPlaneBuilds[0]); c++)
+         for (auto & gPlaneBuild : gPlaneBuilds)
          {
             file >> str;
             long id = atol(str.c_str());
 
-            if (gPlaneBuilds[c].Id!=id) hprintf (0, "Id mismatch: %li vs %li!", gPlaneBuilds[c].Id, id);
-            gPlaneBuilds[c].FromString (str);
+            if (gPlaneBuild.Id!=id) hprintf (0, "Id mismatch: %li vs %li!", gPlaneBuild.Id, id);
+            gPlaneBuild.FromString (str);
          }
       }
    }
@@ -1679,9 +1679,9 @@ TEAKFILE &operator >> (TEAKFILE &File, CPlaneParts &pp)
 //--------------------------------------------------------------------------------------------
 SBBM &CPlanePart::GetBm (SBBMS &PartBms)
 {
-   for (long c=0; c<(sizeof(gPlaneBuilds)/sizeof(gPlaneBuilds[0])); c++)
-      if (gPlaneBuilds[c].Shortname==Shortname)
-         return (PartBms[gPlaneBuilds[c].BitmapIndex]);
+   for (auto & gPlaneBuild : gPlaneBuilds)
+      if (gPlaneBuild.Shortname==Shortname)
+         return (PartBms[gPlaneBuild.BitmapIndex]);
 
    TeakLibW_Exception (FNL, ExcNever);
    return (*(SBBM*)NULL);
@@ -2184,9 +2184,9 @@ long GetPlaneBuildIndex (CString Shortname)
 //--------------------------------------------------------------------------------------------
 CPlaneBuild &GetPlaneBuild (CString Shortname)
 {
-   for (long c=0; c<(sizeof(gPlaneBuilds)/sizeof(gPlaneBuilds[0])); c++)
-      if (gPlaneBuilds[c].Shortname==Shortname)
-         return (gPlaneBuilds[c]);
+   for (auto & gPlaneBuild : gPlaneBuilds)
+      if (gPlaneBuild.Shortname==Shortname)
+         return gPlaneBuild;
 
    TeakLibW_Exception (FNL, ExcNever);
    return (*(CPlaneBuild*)NULL);

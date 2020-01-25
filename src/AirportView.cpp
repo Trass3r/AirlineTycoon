@@ -3841,8 +3841,8 @@ TEAKFILE &operator << (TEAKFILE &File, const AIRPORT &Airport)
    if (SaveVersion==1 && SaveVersionSub>=100)
       File << Airport.iPlateDir;
 
-   for (SLONG c=0; c<10; c++)
-      File << Airport.HallLevel[c];
+   for (long c : Airport.HallLevel)
+      File << c;
 
    return (File);
 }
@@ -3870,8 +3870,8 @@ TEAKFILE &operator >> (TEAKFILE &File, AIRPORT &Airport)
       Airport.iPlateDir+=20*16;
    }
 
-   for (SLONG c=0; c<10; c++)
-      File >> Airport.HallLevel[c];
+   for (long & c : Airport.HallLevel)
+      File >> c;
 
    return (File);
 }

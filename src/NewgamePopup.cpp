@@ -1524,10 +1524,10 @@ again_heimatflughafen:
                         Sim.Players.Players[c].NetworkID=0;
                         Sim.Players.Players[c].Owner=1;
 
-                        for (SLONG d=0; d<4; d++)
-                           if (UnselectedNetworkIDs[d]==0)
+                        for (unsigned long & UnselectedNetworkID : UnselectedNetworkIDs)
+                           if (UnselectedNetworkID==0)
                            {
-                              UnselectedNetworkIDs[d]=gNetwork.GetLocalPlayerID ();
+                              UnselectedNetworkID=gNetwork.GetLocalPlayerID ();
                               break;
                            }
                         RefreshKlackerField();
@@ -1577,9 +1577,9 @@ again_heimatflughafen:
                         if (!bFound) Sim.SendSimpleMessage (ATNET_SELECTPLAYER, NULL, -1, c, gNetwork.GetLocalPlayerID ());
 
 
-                        for (SLONG e=0; e<4; e++)
-                           if (UnselectedNetworkIDs[e]==gNetwork.GetLocalPlayerID ())
-                              UnselectedNetworkIDs[e]=NULL;
+                        for (unsigned long & UnselectedNetworkID : UnselectedNetworkIDs)
+                           if (UnselectedNetworkID==gNetwork.GetLocalPlayerID ())
+                              UnselectedNetworkID=NULL;
 
                         Sim.Options.OptionLastPlayer=c;
 
@@ -2044,9 +2044,9 @@ void NewGamePopup::OnTimer(UINT nIDEvent)
 
                    Message >> OldIndex >> NewIndex >> PlayerNetworkID;
 
-                   for (SLONG c=0; c<4; c++)
-                      if (UnselectedNetworkIDs[c]==PlayerNetworkID)
-                         UnselectedNetworkIDs[c]=NULL;
+                   for (unsigned long & UnselectedNetworkID : UnselectedNetworkIDs)
+                      if (UnselectedNetworkID==PlayerNetworkID)
+                         UnselectedNetworkID=NULL;
 
                    if (OldIndex!=-1)
                       memswap (&Sim.Players.Players[OldIndex].NetworkID, &Sim.Players.Players[NewIndex].NetworkID, sizeof (ULONG));
@@ -2068,10 +2068,10 @@ void NewGamePopup::OnTimer(UINT nIDEvent)
                    Sim.Players.Players[PlayerIndex].NetworkID=0;
                    Sim.Players.Players[PlayerIndex].Owner=1;
 
-                   for (SLONG c=0; c<4; c++)
-                      if (UnselectedNetworkIDs[c]==0)
+                   for (unsigned long & UnselectedNetworkID : UnselectedNetworkIDs)
+                      if (UnselectedNetworkID==0)
                       {
-                         UnselectedNetworkIDs[c]=PlayerNetworkID;
+                         UnselectedNetworkID=PlayerNetworkID;
                          break;
                       }
                    RefreshKlackerField();

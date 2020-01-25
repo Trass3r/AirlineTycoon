@@ -63,8 +63,8 @@ CWeltAll::CWeltAll(BOOL bHandy, ULONG PlayerNum) : CStdRaum (bHandy, PlayerNum, 
 
    KonstruktorFinished=TRUE;
 
-   for (SLONG c=0; c<4; c++)
-      SP_Flags[c].ReSize (1);
+   for (auto & SP_Flag : SP_Flags)
+      SP_Flag.ReSize (1);
 
    SP_Flags[0].Clips[0].ReSize (0, "FlagB.smk", "", XY ( 142,  63), SPM_IDLE, CRepeat(9,9), CPostWait(0,0), SMACKER_CLIP_CANCANCEL, NULL, SMACKER_CLIP_SET, 0, NULL, "A9", 0);
    SP_Flags[1].Clips[0].ReSize (0, "FlagG.smk", "", XY ( 442, 163), SPM_IDLE, CRepeat(9,9), CPostWait(0,0), SMACKER_CLIP_CANCANCEL, NULL, SMACKER_CLIP_SET, 0, NULL, "A9", 0);
