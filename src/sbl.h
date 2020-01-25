@@ -240,7 +240,7 @@ public:
     ~SB_CPrimaryBitmap(void);
 
     long Create(SDL_Renderer**, SDL_Window*, unsigned short, long, long, unsigned char, unsigned short);
-    virtual unsigned long Release(void);
+    unsigned long Release(void) override;
     long Flip(void);
     void SetPos(const struct tagPOINT&);
     struct IDirectDrawSurface* GetLastPage(void);

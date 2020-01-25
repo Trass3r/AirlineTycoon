@@ -78,6 +78,6 @@ class CPlaner : public CStdRaum
 
    // Implementation
    public:
-	   virtual ~CPlaner();
+      ~CPlaner() override;
 
 };

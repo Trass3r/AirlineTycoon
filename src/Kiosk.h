@@ -34,14 +34,14 @@ public:
 
 // Implementation
 public:
-	virtual ~CKiosk();
+	~CKiosk() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CKiosk)
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual void OnPaint();
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	void OnPaint() override;
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

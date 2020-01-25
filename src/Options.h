@@ -48,17 +48,17 @@ public:
 
 // Implementation
 public:
-	virtual ~Options();
+	~Options() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(Options)
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnPaint();
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual void OnTimer(UINT nIDEvent);
-	virtual void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-	virtual void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnPaint() override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	void OnTimer(UINT nIDEvent) override;
+	void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) override;
+	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

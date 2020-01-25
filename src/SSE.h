@@ -312,30 +312,30 @@ class FX : public DIGITAL
 	protected:
 		FX();
 		HRESULT	Create(SSE* pSSE, char* file, dword samplesPerSec, word channels, word bitsPerSample);
-		virtual	bool	StopPriority (dword flags);
+		bool	StopPriority (dword flags) override;
 
 	public:
-		virtual	~FX();
-		virtual  long Release();
-		virtual	HRESULT Play(dword dwFlags = 0, long pan = 0);
-		virtual	HRESULT Stop();
-		virtual	HRESULT Pause();
-		virtual	HRESULT Resume();
-		virtual	HRESULT GetVolume (long* pVolume);
-		virtual	HRESULT SetVolume (long volume);
-		virtual	HRESULT GetPan (long* pPan);
-		virtual	HRESULT SetPan (long pan);
-		virtual	HRESULT Load (const char* file = NULL);
+		~FX() override;
+		long Release() override;
+		HRESULT Play(dword dwFlags = 0, long pan = 0) override;
+		HRESULT Stop() override;
+		HRESULT Pause() override;
+		HRESULT Resume() override;
+		HRESULT GetVolume (long* pVolume) override;
+		HRESULT SetVolume (long volume) override;
+		HRESULT GetPan (long* pPan) override;
+		HRESULT SetPan (long pan) override;
+		HRESULT Load (const char* file = NULL) override;
 		virtual	HRESULT Fusion (const FX **Fx, long NumFx);
 		virtual	HRESULT Fusion (const FX *Fx, long *Von, long *Bis, long NumFx);
 		virtual	HRESULT Tokenize (__int64 Token, long *Von, long *Bis, long &rcAnzahl);
 		virtual	FX    **Tokenize (__int64 Token, long &rcAnzahl);
-		virtual	HRESULT Free ();
+		HRESULT Free () override;
 
-		virtual	HRESULT GetStatus(dword* pStatus);
+		HRESULT GetStatus(dword* pStatus) override;
 		virtual	bool	IsMouthOpen(long PreTime);
-		virtual	word	CountPlaying();
-		virtual	void	SetFormat (dword samplesPerSec = 0, word channels = 0, word bitsPerSample = 0);
+		word	CountPlaying() override;
+		void	SetFormat (dword samplesPerSec = 0, word channels = 0, word bitsPerSample = 0) override;
       long  GetByteLength (void) { return (_fxData.bufferSize); }
 
 	protected:
@@ -390,24 +390,24 @@ class MIDI : public MUSIC
 	protected:
 		MIDI();
 		HRESULT	Create(SSE* pSSE, char* file);
-		virtual	bool	StopPriority (dword flags);
+		bool	StopPriority (dword flags) override;
 
 	public:
-		virtual	~MIDI();
-		virtual  long Release();
-		DllExport virtual	HRESULT Play(dword dwFlags = 0, long pan = 0);
-		virtual	HRESULT Stop();
-		virtual	HRESULT Pause();
-		virtual	HRESULT Resume();
-		virtual	HRESULT GetVolume (long* pVolume);
-		virtual	HRESULT SetVolume (long volume);
-		virtual	HRESULT GetPan (long* pPan);
-		virtual	HRESULT SetPan (long pan);
-		virtual	HRESULT Load (const char* file = NULL);
-		virtual	HRESULT Free ();
+		~MIDI() override;
+		long Release() override;
+		DllExport 	HRESULT Play(dword dwFlags = 0, long pan = 0) override;
+		HRESULT Stop() override;
+		HRESULT Pause() override;
+		HRESULT Resume() override;
+		HRESULT GetVolume (long* pVolume) override;
+		HRESULT SetVolume (long volume) override;
+		HRESULT GetPan (long* pPan) override;
+		HRESULT SetPan (long pan) override;
+		HRESULT Load (const char* file = NULL) override;
+		HRESULT Free () override;
 
-		virtual	HRESULT GetStatus(dword* pStatus);
-		virtual	word	CountPlaying();
+		HRESULT GetStatus(dword* pStatus) override;
+		word	CountPlaying() override;
 
 	protected:
 		Mix_Music*		_music;

@@ -42,14 +42,14 @@ public:
 
 // Implementation
 public:
-	virtual ~CDutyFree();
+	~CDutyFree() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CDutyFree)
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnPaint();
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnPaint() override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

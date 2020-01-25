@@ -36,15 +36,15 @@ public:
 
 // Implementation
 public:
-	virtual ~CAbend();
+	~CAbend() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CAbend)
-	virtual void OnPaint();
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
+	void OnPaint() override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) override;
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

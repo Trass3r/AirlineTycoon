@@ -63,19 +63,19 @@ public:
 
 // Implementation
 public:
-	virtual ~NewGamePopup();
+	~NewGamePopup() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(NewGamePopup)
-	virtual void OnPaint();
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnTimer(UINT nIDEvent);
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-	virtual void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-	virtual BOOL OnSetCursor(void* pWnd, UINT nHitTest, UINT message);
-	virtual void OnMouseMove(UINT nFlags, CPoint point);
+	void OnPaint() override;
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnTimer(UINT nIDEvent) override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) override;
+	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) override;
+	BOOL OnSetCursor(void* pWnd, UINT nHitTest, UINT message) override;
+	void OnMouseMove(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

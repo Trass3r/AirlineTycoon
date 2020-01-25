@@ -48,14 +48,14 @@ public:
 
 // Implementation
 public:
-	virtual ~CMakler();
+	~CMakler() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CMakler)
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnPaint();
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnPaint() override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

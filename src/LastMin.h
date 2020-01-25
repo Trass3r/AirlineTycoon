@@ -41,14 +41,14 @@ public:
 
 // Implementation
 public:
-	virtual ~CLastMinute();
+	~CLastMinute() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CLastMinute)
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual void OnPaint();
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	void OnPaint() override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

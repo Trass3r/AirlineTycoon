@@ -42,14 +42,14 @@ public:
 
 // Implementation
 public:
-	virtual ~CReisebuero();
+	~CReisebuero() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CReisebuero)
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual void OnPaint();
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	void OnPaint() override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

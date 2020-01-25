@@ -27,13 +27,13 @@ public:
 
 // Implementation
 public:
-	virtual ~TitlePopup();
+	~TitlePopup() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(TitlePopup)
-	virtual void OnPaint();
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
+	void OnPaint() override;
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

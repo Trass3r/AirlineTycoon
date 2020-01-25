@@ -26,17 +26,17 @@ public:
 
 // Implementation
 public:
-	virtual ~HallDiskMenu();
+	~HallDiskMenu() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(HallDiskMenu)
-	virtual void OnPaint();
+	void OnPaint() override;
 	virtual void OnClose();
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	virtual BOOL OnSetCursor(void* pWnd, UINT nHitTest, UINT message);
-	virtual void OnMouseMove(UINT nFlags, CPoint point);
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
+	BOOL OnSetCursor(void* pWnd, UINT nHitTest, UINT message) override;
+	void OnMouseMove(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

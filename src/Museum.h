@@ -43,14 +43,14 @@ public:
 
 // Implementation
 public:
-	virtual ~CMuseum();
+	~CMuseum() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CMuseum)
-	virtual void OnPaint();
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
+	void OnPaint() override;
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

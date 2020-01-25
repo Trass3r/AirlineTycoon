@@ -35,14 +35,14 @@ public:
 
 // Implementation
 public:
-	virtual ~CSecurity();
+	~CSecurity() override;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CSecurity)
-	virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	virtual void OnPaint();
-	virtual void OnRButtonDown(UINT nFlags, CPoint point);
+	void OnLButtonDown(UINT nFlags, CPoint point) override;
+	void OnPaint() override;
+	void OnRButtonDown(UINT nFlags, CPoint point) override;
 	//}}AFX_MSG
 	//DECLARE_MESSAGE_MAP()
 };

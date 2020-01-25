@@ -47,19 +47,19 @@ class CGlobe : public CPlaner
 
    // Implementation
    public:
-	   virtual ~CGlobe();
+	   ~CGlobe() override;
 
 	   // Generated message map functions
    protected:
 	   //{{AFX_MSG(CGlobe)
-	   virtual void OnLButtonDown(UINT nFlags, CPoint point);
-	   virtual void OnLButtonUp(UINT nFlags, CPoint point);
-	   virtual void OnPaint();
-	   virtual void OnRButtonUp(UINT nFlags, CPoint point);
-	   virtual void OnRButtonDown(UINT nFlags, CPoint point);
-	   virtual void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-	   virtual void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-      virtual void OnLButtonDblClk(UINT nFlags, CPoint point);
+	   void OnLButtonDown(UINT nFlags, CPoint point) override;
+	   void OnLButtonUp(UINT nFlags, CPoint point) override;
+	   void OnPaint() override;
+	   void OnRButtonUp(UINT nFlags, CPoint point) override;
+	   void OnRButtonDown(UINT nFlags, CPoint point) override;
+	   void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) override;
+	   void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) override;
+      void OnLButtonDblClk(UINT nFlags, CPoint point) override;
 	   //}}AFX_MSG
 	   //DECLARE_MESSAGE_MAP()
 };
