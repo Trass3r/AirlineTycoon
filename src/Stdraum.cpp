@@ -633,10 +633,6 @@ void CStdRaum::MakeSayWindow (BOOL TextAlign, const char *GroupId, ULONG SubId, 
 //--------------------------------------------------------------------------------------------
 void CStdRaum::MakeSayWindow (BOOL TextAlign, const char *GroupId, ULONG SubIdVon, ULONG SubIdBis, BOOL ParameterIndiziert, SB_CFont *Normal, SB_CFont *Highlight, ...)
 {
-   SLONG c;
-   SLONG Rand;
-   ULONG tmp;
-
    CanCancelEmpty = FALSE;
    TimeAtStart = timeGetTime();
 
@@ -647,9 +643,6 @@ void CStdRaum::MakeSayWindow (BOOL TextAlign, const char *GroupId, ULONG SubIdVo
       SpeechFx.Stop();
       TalkingSpeechFx=FALSE;
    }
-
-   //Platz für den Rand lassen?
-   Rand=0;
 
    TimeBubbleDisplayed = timeGetTime();
 
@@ -665,7 +658,8 @@ void CStdRaum::MakeSayWindow (BOOL TextAlign, const char *GroupId, ULONG SubIdVo
    pFontHighlight = Highlight;
 
    //Delete old strings:
-   for (c=0; c<10; c++) Optionen[c].Empty();
+   for (CString& o : Optionen)
+       o.Empty();
 
    BUFFER<char> TmpString(4096);
 
@@ -676,23 +670,24 @@ void CStdRaum::MakeSayWindow (BOOL TextAlign, const char *GroupId, ULONG SubIdVo
    va_start (Vars, Highlight);
 
    //Die gesammten Parameter "reinvestieren":
-   for (c=CurrentTextSubIdVon; c<=(SLONG)CurrentTextSubIdBis; c++)
+   for (SLONG c = CurrentTextSubIdVon; c <= (SLONG)CurrentTextSubIdBis; c++)
    {
       if (c-CurrentTextSubIdVon<0 || c-CurrentTextSubIdVon>=10) DebugBreak();
 
       //Sind die Paramter eine Liste für die Antworten oder jeweils alle für alle?
+      char* tmp = nullptr;
       if (ParameterIndiziert==TRUE)
       {
-         //Paramterindiziert (4-Byte Parameter, das ist wichtig):
-         tmp = va_arg (Vars, ULONG);
+         // 1 argument
+         tmp = va_arg (Vars, char*);
 
          sprintf (TmpString, DialogTexte.GetS (CurrentTextGroupId, c), tmp);
       }
       else if (ParameterIndiziert==2)
       {
-         //Paramterindiziert (4-Byte Parameter, das ist wichtig):
-         tmp        = va_arg (Vars, ULONG);
-         SLONG tmp2 = va_arg (Vars, ULONG);
+         // 2 arguments
+         tmp        = va_arg (Vars, char*);
+         char* tmp2 = va_arg (Vars, char*);
 
          sprintf (TmpString, DialogTexte.GetS (CurrentTextGroupId, c), tmp, tmp2);
       }
