@@ -2436,7 +2436,7 @@ class SIM //Die Simulationswelt; alles was zur aktuellen Partie gehört
 
    //Datum und Zeit:
    public:
-      CCodedVar<SLONG,0x7ab8077f,0x6c931a93> Date;    //Tage seit Spielbeginn
+      CCodedVar<int,0x7ab8077f,0x6c931a93> Date;    //Tage seit Spielbeginn
       ULONG       Time;          //Die Simulationszeit
       SLONG       Month, MonthDay; //Zur Vereinfachung gespeichert
       UBYTE       QuitCountDown; //Zähler, die lange die Leute bis zum Quit winken
