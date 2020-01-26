@@ -83,7 +83,7 @@ public:
       x = y = 0;
    }
 
-   CPoint(const POINT& initPoint)
+   CPoint(const CPoint& initPoint)
    {
       x = initPoint.x;
       y = initPoint.y;
