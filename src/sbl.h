@@ -171,16 +171,19 @@ public:
     void SetClipRect(const CRect&);
     void SetColorKey(unsigned long);
     virtual unsigned long Release(void);
-    unsigned long BlitFast(class SB_CBitmapCore*, long, long, const RECT* = NULL, unsigned short = 0);
-    unsigned long BlitChar(SDL_Surface*, long, long, const RECT* = NULL, unsigned short = 0);
-    unsigned long Blit(class SB_CBitmapCore*, long, long, const RECT* = NULL, unsigned short = 0, unsigned long = 0);
+	unsigned long BlitFast(class SB_CBitmapCore*, long, long);
+	unsigned long BlitFast(class SB_CBitmapCore*, long, long, const CRect&);
+	unsigned long BlitChar(SDL_Surface*, long, long, const CRect&, unsigned short = 0);
+	unsigned long Blit(class SB_CBitmapCore*, long, long);
+	unsigned long Blit(class SB_CBitmapCore*, long, long, const CRect&);
     long BlitA(class SB_CBitmapCore*, long, long, const RECT*, class SB_CHardwarecolorHelper*);
     long BlitA(class SB_CBitmapCore*, long, long, const RECT*);
     long BlitAT(class SB_CBitmapCore*, long, long, const RECT*, class SB_CHardwarecolorHelper*);
     long BlitAT(class SB_CBitmapCore*, long, long, const RECT*);
 
-    unsigned long BlitT(class SB_CBitmapCore* bm, long x, long y, const RECT* rect = NULL, short flags = 16, unsigned long unk = 0) { return Blit(bm, x, y, rect, flags, unk); }
-    unsigned long SetPixel(long x, long y, SLONG color) { return SetPixel(x, y, GetHardwarecolor(color)); }
+    unsigned long BlitT(class SB_CBitmapCore* bm, long x, long y) { return Blit(bm, x, y); }
+	unsigned long BlitT(class SB_CBitmapCore* bm, long x, long y, const CRect& rect) { return Blit(bm, x, y, rect); }
+	unsigned long SetPixel(long x, long y, SLONG color) { return SetPixel(x, y, GetHardwarecolor(color)); }
     unsigned long Line(long x1, long y1, long x2, long y2, DWORD color) { return Line(x1, y1, x2, y2, GetHardwarecolor(color)); }
     SLONG GetXSize() { return Size.x; }
     SLONG GetYSize() { return Size.y; }

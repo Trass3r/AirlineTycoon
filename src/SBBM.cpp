@@ -71,7 +71,7 @@ BOOL SBBM::BlitFromT (SBBM &TecBitmap, XY Target)
 BOOL SBBM::BlitPartFrom (SBBM &TecBitmap, XY Target, const XY &p1, const XY &p2)
 {
    if (TecBitmap.pBitmap)
-      TecBitmap.pBitmap->Blit (pBitmap, Target.x, Target.y, &CRect (p1.x, p1.y, p2.x, p2.y));
+      TecBitmap.pBitmap->Blit (pBitmap, Target.x, Target.y, CRect (p1.x, p1.y, p2.x, p2.y));
 
    return (TRUE);
 }
@@ -79,7 +79,7 @@ BOOL SBBM::BlitPartFrom (SBBM &TecBitmap, XY Target, const XY &p1, const XY &p2)
 BOOL SBBM::BlitPartFromT (SBBM &TecBitmap, XY Target, const XY &p1, const XY &p2)
 {
    if (TecBitmap.pBitmap)
-      TecBitmap.pBitmap->BlitT (pBitmap, Target.x, Target.y, &CRect (p1.x, p1.y, p2.x, p2.y));
+      TecBitmap.pBitmap->BlitT (pBitmap, Target.x, Target.y, CRect (p1.x, p1.y, p2.x, p2.y));
 
    return (TRUE);
 }
@@ -89,7 +89,7 @@ BOOL SBBM::BlitFrom (SBBM &TecBitmap, RECT *r1, const XY &dest)
    Bench.BlitTime.Start(); 
 
    if (TecBitmap.pBitmap)
-      TecBitmap.pBitmap->Blit (pBitmap, dest.x, dest.y, r1);
+      TecBitmap.pBitmap->Blit (pBitmap, dest.x, dest.y, *r1);
    if (TecBitmap.pHLObj)
       TecBitmap.pHLObj->BlitAt (pBitmap, dest.x, dest.y);
 
@@ -248,7 +248,7 @@ BOOL SBPRIMARYBM::BlitFrom (SBBM &TecBitmap, RECT *r1, const XY &dest)
    Bench.BlitTime.Start(); 
 
    if (TecBitmap.pBitmap)
-      TecBitmap.pBitmap->Blit (&PrimaryBm, dest.x, dest.y, r1);
+      TecBitmap.pBitmap->Blit (&PrimaryBm, dest.x, dest.y, *r1);
    if (TecBitmap.pHLObj)
       TecBitmap.pHLObj->BlitAt (&PrimaryBm, dest.x, dest.y);
 
@@ -285,7 +285,7 @@ BOOL  SBPRIMARYBM::BlitFromT (SBBM &TecBitmap, RECT *r1, const XY &dest)
    Bench.BlitTime.Start(); 
 
    if (TecBitmap.pBitmap)
-      TecBitmap.pBitmap->BlitT (&PrimaryBm, dest.x, dest.y, r1);
+      TecBitmap.pBitmap->BlitT (&PrimaryBm, dest.x, dest.y, *r1);
    if (TecBitmap.pHLObj)
       TecBitmap.pHLObj->BlitAt (&PrimaryBm, dest.x, dest.y);
 

@@ -266,24 +266,22 @@ unsigned long SB_CBitmapCore::GetPixel(long x, long y)
 #endif
 }
 
-unsigned long SB_CBitmapCore::Blit(class SB_CBitmapCore* core, long x, long y, const RECT* pRect, unsigned short, unsigned long)
+unsigned long SB_CBitmapCore::Blit(class SB_CBitmapCore* core, long x, long y)
 {
-    if (pRect)
-    {
-        const CRect& rect = *(const CRect*)pRect;
-        SDL_Rect src = { rect.left, rect.top, rect.Width(), rect.Height() };
-        SDL_Rect dst = { x, y, rect.Width(), rect.Height() };
-        SDL_BlitSurface(lpDDSurface, &src, core->lpDDSurface, &dst);
-    }
-    else
-    {
-        SDL_Rect dst = { x, y, Size.x, Size.y };
-        SDL_BlitSurface(lpDDSurface, NULL, core->lpDDSurface, &dst);
-    }
+    SDL_Rect dst = { x, y, Size.x, Size.y };
+    SDL_BlitSurface(lpDDSurface, NULL, core->lpDDSurface, &dst);
     return 0;
 }
 
-unsigned long SB_CBitmapCore::BlitFast(class SB_CBitmapCore* core, long x, long y, const RECT* pRect, unsigned short)
+unsigned long SB_CBitmapCore::Blit(class SB_CBitmapCore* core, long x, long y, const CRect& rect)
+{
+    SDL_Rect src = { rect.left, rect.top, rect.Width(), rect.Height() };
+    SDL_Rect dst = { x, y, rect.Width(), rect.Height() };
+    SDL_BlitSurface(lpDDSurface, &src, core->lpDDSurface, &dst);
+    return 0;
+}
+
+unsigned long SB_CBitmapCore::BlitFast(class SB_CBitmapCore* core, long x, long y)
 {
     // Ignore source color key
     Uint32 key = 0;
@@ -291,18 +289,26 @@ unsigned long SB_CBitmapCore::BlitFast(class SB_CBitmapCore* core, long x, long 
     if (result != -1)
         SDL_SetColorKey(lpDDSurface, SDL_FALSE, key);
 
-    if (pRect)
-    {
-        const CRect& rect = *(const CRect*)pRect;
-        SDL_Rect src = { rect.left, rect.top, rect.Width(), rect.Height() };
-        SDL_Rect dst = { x, y, rect.Width(), rect.Height() };
-        SDL_BlitSurface(lpDDSurface, &src, core->lpDDSurface, &dst);
-    }
-    else
-    {
-        SDL_Rect dst = { x, y, Size.x, Size.y };
-        SDL_BlitSurface(lpDDSurface, NULL, core->lpDDSurface, &dst);
-    }
+    SDL_Rect dst = { x, y, Size.x, Size.y };
+    SDL_BlitSurface(lpDDSurface, NULL, core->lpDDSurface, &dst);
+
+    // Restore color key
+    if (result != -1)
+        SDL_SetColorKey(lpDDSurface, SDL_TRUE, key);
+    return 0;
+}
+
+unsigned long SB_CBitmapCore::BlitFast(class SB_CBitmapCore* core, long x, long y, const CRect& rect)
+{
+    // Ignore source color key
+    Uint32 key = 0;
+    int result = SDL_GetColorKey(lpDDSurface, &key);
+    if (result != -1)
+        SDL_SetColorKey(lpDDSurface, SDL_FALSE, key);
+
+    SDL_Rect src = { rect.left, rect.top, rect.Width(), rect.Height() };
+    SDL_Rect dst = { x, y, rect.Width(), rect.Height() };
+    SDL_BlitSurface(lpDDSurface, &src, core->lpDDSurface, &dst);
 
     // Restore color key
     if (result != -1)
@@ -311,9 +317,8 @@ unsigned long SB_CBitmapCore::BlitFast(class SB_CBitmapCore* core, long x, long 
 }
 
 
-unsigned long SB_CBitmapCore::BlitChar(SDL_Surface* font, long x, long y, const RECT* pRect, unsigned short flags)
+unsigned long SB_CBitmapCore::BlitChar(SDL_Surface* font, long x, long y, const CRect& rect, unsigned short flags)
 {
-    const CRect& rect = *(const CRect*)pRect;
     SDL_Rect src = { rect.left, rect.top, rect.Width(), rect.Height() };
     SDL_Rect dst = { x, y, rect.Width(), rect.Height() };
     SDL_BlitSurface(font, &src, lpDDSurface, &dst);
