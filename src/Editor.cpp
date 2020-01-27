@@ -1394,7 +1394,7 @@ void CEditor::OnLButtonUp(UINT, CPoint point)
          Plane.Parts[Id].Pos2d            = GripAtPos2d;
          Plane.Parts[Id].Pos3d            = GripAtPos;
          Plane.Parts[Id].Shortname        = PartUnderCursor;
-         Plane.Parts[Id].ParentShortname  = (GripRelationPart==-1)?"":Plane.Parts[GripRelationPart].Shortname;
+         Plane.Parts[Id].ParentShortname  = (GripRelationPart==-1) ? CString() : Plane.Parts[GripRelationPart].Shortname;
          Plane.Parts[Id].ParentRelationId = GripRelation;
 
          if (PartUnderCursor.Left(1)=="B" || PartUnderCursor.Left(1)=="C" || PartUnderCursor.Left(1)=="H" || PartUnderCursor.Left(1)=="L" || PartUnderCursor.Left(1)=="R" || PartUnderCursor.Left(1)=="W") PartUnderCursor="";

@@ -373,7 +373,7 @@ void DrawRouteTipContents (SBBM &TipBm, SLONG PlayerNum, ULONG RouteId, SLONG Ga
       TipBm.PrintAt (StandardTexte.GetS (TOKEN_ROUTE, 1007), *pFont, TEC_FONT_LEFT, Contents.x, Contents.y+66, Contents.x+170, Contents.y+170);
       //Block 1 Inhalt:
       TipBm.PrintAt (Einheiten[EINH_KM].bString(Cities.CalcDistance (Routen[RouteId].VonCity, Routen[RouteId].NachCity)/1000), *pFont, TEC_FONT_LEFT, Contents.x+85, Contents.y+44, Contents.x+170, Contents.y+170);
-      TipBm.PrintAt ((Passagiere+PassagiereFC)>0?(CString(bitoa(Passagiere))+"/"+CString(bitoa(PassagiereFC))):"?", *pFont, TEC_FONT_LEFT, Contents.x+85, Contents.y+55, Contents.x+170, Contents.y+170);
+	  TipBm.PrintAt((Passagiere + PassagiereFC) > 0 ? (LPCTSTR)(CString(bitoa(Passagiere)) + "/" + CString(bitoa(PassagiereFC))) : "?", *pFont, TEC_FONT_LEFT, Contents.x + 85, Contents.y + 55, Contents.x + 170, Contents.y + 170);
       TipBm.PrintAt (CString(bitoa (Ticketpreis))+"/"+CString(Einheiten[EINH_DM].bString (TicketpreisFC)), *pFont, TEC_FONT_LEFT, Contents.x+85, Contents.y+66, Contents.x+170, Contents.y+170);
       
       tmp=Ticketpreis*Passagiere+TicketpreisFC*PassagiereFC;
