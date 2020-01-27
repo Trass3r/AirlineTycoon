@@ -159,7 +159,7 @@
          BOOL  BlitPartFromT (SBBM &TecBitmap, XY Target, const XY &p1, const XY &p2);
          BOOL  BlitPartFromT (SBBM &TecBitmap, SLONG tx, SLONG ty, SLONG x1, SLONG y1, SLONG x2, SLONG y2) { return(BlitPartFromT (TecBitmap, XY(tx,ty), XY(x1,y1), XY(x2,y2))); }
 
-         BOOL  BlitFrom (SBBM &TecBitmap, RECT *r1, const XY &dest);
+         BOOL BlitFrom(SBBM& TecBitmap, const CRect& r1, const XY& dest);
          BOOL  TextOut (SLONG x, SLONG y, COLORREF Back, COLORREF Front, const CString &String);
          SLONG PrintAt (const char *Str, SB_CFont &Font, SLONG Flags) { return(PrintAt (Str, Font, Flags, XY(0,0), Size-XY(1,1))); }
          SLONG PrintAt (const char *Str, SB_CFont &Font, SLONG Flags, const XY &p1, const XY &p2);
@@ -234,7 +234,7 @@
 
          //Blit Services:
          BOOL  BlitFrom (SBBM &TecBitmap) { return (BlitFrom (TecBitmap, XY (0l, 0l))); }
-         BOOL  BlitFrom (SBBM &TecBitmap, RECT *r1, const XY &dest);
+         BOOL  BlitFrom (SBBM& TecBitmap, const CRect& r1, const XY& dest);
          BOOL  BlitFrom (SBBM &TecBitmap, XY Target);
          BOOL  BlitFrom (SBBM &TecBitmap, SLONG tx, SLONG ty) { return(BlitFrom (TecBitmap, XY (tx, ty))); }
          BOOL  BlitFromT (SBBM &TecBitmap) { return(BlitFromT (TecBitmap, XY (0l, 0l))); }

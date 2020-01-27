@@ -84,12 +84,12 @@ BOOL SBBM::BlitPartFromT (SBBM &TecBitmap, XY Target, const XY &p1, const XY &p2
    return (TRUE);
 }
 
-BOOL SBBM::BlitFrom (SBBM &TecBitmap, RECT *r1, const XY &dest)
+BOOL SBBM::BlitFrom(SBBM& TecBitmap, const CRect& r1, const XY& dest)
 {
    Bench.BlitTime.Start(); 
 
    if (TecBitmap.pBitmap)
-      TecBitmap.pBitmap->Blit (pBitmap, dest.x, dest.y, *r1);
+      TecBitmap.pBitmap->Blit (pBitmap, dest.x, dest.y, r1);
    if (TecBitmap.pHLObj)
       TecBitmap.pHLObj->BlitAt (pBitmap, dest.x, dest.y);
 
@@ -243,12 +243,12 @@ void SBBM::Line (XY p1, XY p2, BOOL Fat, SB_Hardwarecolor *pColor, SLONG NumColo
 	}
 }
 
-BOOL SBPRIMARYBM::BlitFrom (SBBM &TecBitmap, RECT *r1, const XY &dest)
+BOOL SBPRIMARYBM::BlitFrom(SBBM& TecBitmap, const CRect& r1, const XY& dest)
 {
    Bench.BlitTime.Start(); 
 
    if (TecBitmap.pBitmap)
-      TecBitmap.pBitmap->Blit (&PrimaryBm, dest.x, dest.y, *r1);
+      TecBitmap.pBitmap->Blit (&PrimaryBm, dest.x, dest.y, r1);
    if (TecBitmap.pHLObj)
       TecBitmap.pHLObj->BlitAt (&PrimaryBm, dest.x, dest.y);
 
