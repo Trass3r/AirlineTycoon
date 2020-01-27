@@ -226,7 +226,7 @@ SLONG CITIES::GetRandomUsedIndex (SLONG AreaCode, TEAKRAND *pRand)
 //--------------------------------------------------------------------------------------------
 //Gibt die Nummer der Stadt mit dem angegebnen Namen zurück:
 //--------------------------------------------------------------------------------------------
-ULONG CITIES::GetIdFromName (char *Name)
+ULONG CITIES::GetIdFromName(const char* Name)
 {
    SLONG c;
 
@@ -251,14 +251,14 @@ ULONG CITIES::GetIdFromName (char *Name)
 //--------------------------------------------------------------------------------------------
 //Gibt die Nummer der Stadt mit dem angegebnen Namen zurück:
 //--------------------------------------------------------------------------------------------
-ULONG CITIES::GetIdFromNames (char *Name, ...)
+ULONG CITIES::GetIdFromNames(const char* Name, ...)
 {
    SLONG c;
 
-   foreacharg (LPSTR, Name, NULL)
+   foreacharg (LPCSTR, Name, NULL)
    {
       for (c=0; c<(SLONG)AnzEntries(); c++)
-         if (IsInAlbum(c) && stricmp (qLPSTR, (LPCTSTR)Cities[c].Name)==0)
+         if (IsInAlbum(c) && stricmp (qLPCSTR, (LPCTSTR)Cities[c].Name)==0)
             return (GetIdFromIndex(c));
    }
 

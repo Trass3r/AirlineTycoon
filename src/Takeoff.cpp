@@ -255,7 +255,7 @@ int main(int argc, char* argv[])
 
    long vv = v.GetValue();
 
-	char* pText = "Hallo, ich bin ein Text";
+	const char* pText = "Hallo, ich bin ein Text";
 
 	// eigentlich wurde UCharToReadableAnsi ja geschaffen um Daten-Streams zu konvertieren, aber man kann es natürlich auch mit einem String machen!
 	char* pEncoded = UCharToReadableAnsi( ( unsigned char * )pText, strlen( pText ) + 1 );
@@ -264,7 +264,7 @@ int main(int argc, char* argv[])
 	char* pDecodeBack = ( char * ) ReadableAnsiToUChar( ( char * ) pEncoded2, strlen( pEncoded2 ) + 1 );
 	char* pDecodeBack2 = ( char * ) ReadableAnsiToUChar( ( char * ) pDecodeBack , strlen( pDecodeBack  ) + 1 );
 
-	char* pText2 = "DMCPRCZ5F5Y3D4XV1OHFY4B3HLIQJBP4LIS6STCBSQUUOKL3KSONUPTOGF2BZLXGAZGXEYLSORUW3CIHIR1W3Z3SMVXW3IGOHMAAAAIJL6STTMVMQFBKDYBGC5VP5MMWV5QJQ";   
+	const char* pText2 = "DMCPRCZ5F5Y3D4XV1OHFY4B3HLIQJBP4LIS6STCBSQUUOKL3KSONUPTOGF2BZLXGAZGXEYLSORUW3CIHIR1W3Z3SMVXW3IGOHMAAAAIJL6STTMVMQFBKDYBGC5VP5MMWV5QJQ";   
 	char* pDecodeBack3 = ( char * ) ReadableAnsiToUChar( ( char * ) pText2, strlen( pText2 ) );
 
 	delete [] pEncoded;

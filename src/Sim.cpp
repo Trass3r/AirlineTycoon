@@ -3040,7 +3040,7 @@ TEAKFILE &operator >> (TEAKFILE &File, SIM &Sim)
 //--------------------------------------------------------------------------------------------
 BOOL SIM::LoadGame (SLONG Number)
 {
-   char *pNamebaseStr;
+   const char* pNamebaseStr;
 
    if (Sim.bNetwork) pNamebaseStr = "Net%li.dat";
                 else pNamebaseStr = "Game%li.dat";
@@ -3324,7 +3324,7 @@ reload_airport:
 //--------------------------------------------------------------------------------------------
 void SIM::SaveGame (SLONG Number, const CString &Name)
 {
-   char *pNamebaseStr;
+   const char* pNamebaseStr;
 
    if (Sim.bNetwork) pNamebaseStr = "Net%li.dat";
                 else pNamebaseStr = "Game%li.dat";
@@ -3441,7 +3441,7 @@ SLONG SIM::GetSavegameLocalPlayer (SLONG Index)
 {
    CString Filename;
 
-   char *pNamebaseStr;
+   const char* pNamebaseStr;
 
    if (Sim.bNetwork) pNamebaseStr = "Net%li.dat";
                 else pNamebaseStr = "Game%li.dat";
@@ -3483,7 +3483,7 @@ DWORD SIM::GetSavegameUniqueGameId (SLONG Index, bool bForceNetwork)
 {
    CString Filename;
 
-   char *pNamebaseStr;
+   const char* pNamebaseStr;
 
    if (Sim.bNetwork || bForceNetwork) pNamebaseStr = "Net%li.dat";
                                  else pNamebaseStr = "Game%li.dat";
@@ -3522,7 +3522,7 @@ SLONG SIM::GetSavegameNumHumans (SLONG Index)
 {
    CString Filename;
 
-   char *pNamebaseStr;
+   const char* pNamebaseStr;
 
    if (Sim.bNetwork) pNamebaseStr = "Net%li.dat";
                 else pNamebaseStr = "Game%li.dat";
@@ -3564,7 +3564,7 @@ CString SIM::GetSavegameSessionName (SLONG Index)
 {
    CString Filename;
 
-   char *pNamebaseStr;
+   const char* pNamebaseStr;
 
    if (Sim.bNetwork) pNamebaseStr = "Net%li.dat";
                 else pNamebaseStr = "Game%li.dat";
@@ -3614,7 +3614,7 @@ void SIM::ReadSavegameOwners (SLONG Index)
 {
    CString Filename;
 
-   char *pNamebaseStr;
+   const char* pNamebaseStr;
 
    if (Sim.bNetwork) pNamebaseStr = "Net%li.dat";
                 else pNamebaseStr = "Game%li.dat";

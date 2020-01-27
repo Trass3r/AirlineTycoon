@@ -6650,7 +6650,7 @@ bool RobotUse (SLONG FeatureId)
    else if (Sim.Difficulty>=DIFF_ATFS01 && Sim.Difficulty<=DIFF_ATFS10) Level = Sim.Difficulty-DIFF_ATFS01+7+10;
 
    //Tabelle ermitteln für welche Level ein Feature ermittelt wird:
-   char *pFeatureDesc;
+   const char* pFeatureDesc = nullptr;
    switch (FeatureId)
    {
       //0-5 : Level im Basisspiel
