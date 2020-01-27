@@ -40,22 +40,22 @@ class CPlanePartRelation
 class CPlaneBuild
 {
    public:
-      long  Id;          // [csv]
-      char *Shortname;   // [csv] z.B. B1
-      long  Cost;        // [CSV] Soviel kostet das hier
-      long  Weight;      // [CSV] Soviel wiegt dieses Teil (Beispiel 149pass=62t 170pass=68t 272pass=148t 440pass=135t 550pass=160t)
-      long  Power;       // [CSV] Soviel Power hat es, falls es ein Triebwerk ist
-      long  Noise;       // [CSV] Soviel Krach verursacht es
-      long  Wartung;     // [CSV] So Wartungsintensiv ist dieses Teil
-      long  Passagiere;  // [CSV] Soviele Leute passen in diesen Part
-      long  Verbrauch;   // [CSV] Verbrauch in l/h
-      long  BitmapIndex; // Index in das Array mit Bitmaps
-      long  zPos;
+      int  Id;          // [csv]
+      const char* Shortname;   // [csv] z.B. B1
+      int  Cost;        // [CSV] Soviel kostet das hier
+      int  Weight;      // [CSV] Soviel wiegt dieses Teil (Beispiel 149pass=62t 170pass=68t 272pass=148t 440pass=135t 550pass=160t)
+      int  Power;       // [CSV] Soviel Power hat es, falls es ein Triebwerk ist
+      int  Noise;       // [CSV] Soviel Krach verursacht es
+      int  Wartung;     // [CSV] So Wartungsintensiv ist dieses Teil
+      int  Passagiere;  // [CSV] Soviele Leute passen in diesen Part
+      int  Verbrauch;   // [CSV] Verbrauch in l/h
+      int  BitmapIndex; // Index in das Array mit Bitmaps
+      int  zPos;
 
    public:
       CPlaneBuild () { Shortname=NULL; }
 
-      CPlaneBuild (long _Id, char *_Shortname, long _Cost, long _Weight, long _Power, long _Noise, long _Wartung, long _Passagiere, long _Verbrauch, long _BitmapIndex, long _zPos)
+      CPlaneBuild (int _Id, const char* _Shortname, int _Cost, int _Weight, int _Power, int _Noise, int _Wartung, int _Passagiere, int _Verbrauch, int _BitmapIndex, int _zPos)
       { Id=_Id; Shortname=_Shortname; Cost=_Cost; Weight=_Weight; Power=_Power; Noise=_Noise; Wartung=_Wartung; Passagiere=_Passagiere; Verbrauch=_Verbrauch; BitmapIndex=_BitmapIndex; zPos=_zPos; }
 
       void    FromString (CString str);
