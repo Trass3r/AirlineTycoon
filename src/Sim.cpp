@@ -2690,7 +2690,8 @@ void SIM::CreateRandomUsedPlane (SLONG Index)
 
    rnd.SRand (Sim.Date+Index);
 
-   UsedPlanes[0x1000000+Index]=CPlane (PlaneNames.GetUnused(&rnd), PlaneTypes.GetRandomExistingType(&rnd), UBYTE(rnd.Rand(80)+11), 1900);
+   CPlane plane(PlaneNames.GetUnused(&rnd), PlaneTypes.GetRandomExistingType(&rnd), UBYTE(rnd.Rand(80) + 11), 1900);
+   UsedPlanes[0x1000000 + Index] = plane;
 
    //if (PlaneTypes[UsedPlanes[0x1000000+Index].TypeId].Erstbaujahr<1990)
    if (UsedPlanes[0x1000000+Index].ptErstbaujahr<1990)
