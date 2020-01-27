@@ -7459,9 +7459,9 @@ phone_busy:
             for (; c>=0; c--)
                if (Optionen[0].GetAt(c)<'0' || Optionen[0].GetAt(c)>'9') break;
 
-            if (c==-1 && Optionen[0].GetLength()>0 && _atoi64(Optionen[0])!=0)
+            if (c == -1 && Optionen[0].GetLength() > 0 && atoi(Optionen[0]) != 0)
             {
-               if (Sim.Players.Players[Sim.localPlayer].Money>=_atoi64(Optionen[0]) && _atoi64(Optionen[0])>0 && Optionen[0].GetLength()<9)
+               if (Sim.Players.Players[Sim.localPlayer].Money >= atoi(Optionen[0]) && atoi(Optionen[0]) > 0 && Optionen[0].GetLength() < 9)
                {
                   Sim.Players.Players[MenuPar1].ChangeMoney (atoi(Optionen[0]), 3700, Sim.Players.Players[Sim.localPlayer].NameX);
                   Sim.Players.Players[Sim.localPlayer].ChangeMoney (-atoi(Optionen[0]), 3701, Sim.Players.Players[MenuPar1].NameX);

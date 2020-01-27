@@ -10,6 +10,8 @@
 #else
 #include <sys/stat.h>
 #endif
+#include <filesystem>
+
                             //Für Menschen     Für Computer
                             //Money   Credit   Money    Credit
 const long InitMoney[] =   { 1500000,        0, 2000000,        0,   //DIFF_FREEGAME
@@ -3332,7 +3334,7 @@ void SIM::SaveGame (SLONG Number, const CString &Name)
    SaveVersion=1;
    SaveVersionSub=107;  //Version 1.104
 
-   _mkdir (AppPath+SavegamePath.Left(SavegamePath.GetLength()-3));
+   std::filesystem::create_directory((std::string)(AppPath + SavegamePath.Left(SavegamePath.GetLength()-3)));
 
    TEAKFILE OutputFile (Filename, TEAKFILE_WRITE);
 
@@ -3902,11 +3904,11 @@ void SIM::LoadHighscores (void)
             Highscore.Name = strtok (Buffer, ";");
             Highscore.UniqueGameId2 = atoi (strtok (NULL, ";"));
 
-            __int64 k1 = _atoi64 (strtok (NULL, ";"));
-            __int64 k2 = _atoi64 (strtok (NULL, ";"));
-            __int64 k3 = _atoi64 (strtok (NULL, ";"));
-            __int64 k4 = _atoi64 (strtok (NULL, ";"));
-            __int64 k5 = _atoi64 (strtok (NULL, ";"));
+            int64_t k1 = atoll(strtok(nullptr, ";"));
+            int64_t k2 = atoll(strtok(nullptr, ";"));
+            int64_t k3 = atoll(strtok(nullptr, ";"));
+            int64_t k4 = atoll(strtok(nullptr, ";"));
+            int64_t k5 = atoll(strtok(nullptr, ";"));
 
             if ((k4^k1^k3) == (k5^k2))
                Highscore.Score = k5^k2;

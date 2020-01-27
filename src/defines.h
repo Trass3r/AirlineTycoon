@@ -73,6 +73,15 @@ typedef struct tagRECT
 #define stricmp strcasecmp
 #define strnicmp strncasecmp
 
+#include <ctype.h>
+inline void strupr(char* p)
+{
+	while (*p)
+	{
+		*p = toupper(*p);
+		++p;
+	}
+}
 #endif
 
 class CPoint : public tagPOINT

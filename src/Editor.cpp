@@ -8,6 +8,9 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
+#if !_WIN32
+#include <unistd.h>
+#endif
 
 #ifdef _DEBUG
 #undef THIS_FILE
