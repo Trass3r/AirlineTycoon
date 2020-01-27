@@ -1012,9 +1012,9 @@ inline bool operator!=(const CPoint& lhs, const CPoint& rhs)
 #define max(a,b) (((a) > (b)) ? (a) : (b))
 #define min(a,b) (((a) < (b)) ? (a) : (b))
 #define RGB(r,g,b) ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))
-#define GetRValue(rgb) ((rgb)&0xFF)
-#define GetGValue(rgb) ((((WORD)(rgb)) >> 8)&0xFF)
-#define GetBValue(rgb) (((rgb)>>16)&0xFF)
+#define GetRValue(rgb) ((unsigned char)((rgb) & 0xFF))
+#define GetGValue(rgb) ((unsigned char)(((rgb) >> 8)&0xFF))
+#define GetBValue(rgb) ((unsigned char)(((rgb)>>16)&0xFF))
 #define ZeroMemory(ptr,size) memset(ptr,0,size)
 
 #define FALSE 0
