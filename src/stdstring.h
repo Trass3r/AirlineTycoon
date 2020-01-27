@@ -2428,7 +2428,7 @@ public:
 #ifdef SS_NO_LOCALE
 					   SSToUpper<CT>());
 #else
-					   std::bind2nd(SSToUpper<CT>(), loc));
+					   std::bind(SSToUpper<CT>(), std::placeholders::_1, loc));
 #endif
 
 		// ...but if it were, this would probably work better.  Also, this way
@@ -2456,7 +2456,7 @@ public:
 #ifdef SS_NO_LOCALE
 					   SSToLower<CT>());
 #else
-					   std::bind2nd(SSToLower<CT>(), loc));
+					   std::bind(SSToLower<CT>(), std::placeholders::_1, loc));
 #endif
 
 		// ...but if it were, this would probably work better.  Also, this way
