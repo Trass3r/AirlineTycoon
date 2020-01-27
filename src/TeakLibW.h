@@ -148,31 +148,9 @@ public:
         ::Swap(Size, rhs.Size);
     }
 
-    friend class TEAKFILE& operator << (TEAKFILE& File, const BUFFER<T>& buffer)
-    {
-        File << buffer.Size;
-        File << (buffer.DelPointer - buffer.MemPointer);
-        for (SLONG i = 0; i < buffer.Size; i++)
-            File << buffer.MemPointer[i];
-        return File;
-    }
-
-    friend class TEAKFILE& operator >> (TEAKFILE& File, BUFFER<T>& buffer)
-    {
-        SLONG size, offset;
-        File >> size;
-        buffer.ReSize(0);
-        buffer.ReSize(size);
-        File >> offset;
-        for (SLONG i = 0; i < buffer.Size; i++)
-            File >> buffer.MemPointer[i];
-        buffer.DelPointer = buffer.MemPointer + offset;
-        return File;
-    }
-
     T* MemPointer;
     T* DelPointer;
-    SLONG Size;
+    int Size = 0;
 };
 
 #define TEAKFILE_READ	1
@@ -258,6 +236,30 @@ public:
         BUFFER<BYTE> str(size);
         File.Read(str, size);
         b = (PCSTR)(BYTE*)str;
+        return File;
+    }
+
+    template <typename T>
+    friend TEAKFILE& operator<<(TEAKFILE& File, const BUFFER<T>& buffer)
+    {
+        File << buffer.Size;
+        File << int(buffer.DelPointer - buffer.MemPointer);
+        for (int i = 0; i < buffer.Size; i++)
+            File << buffer.MemPointer[i];
+        return File;
+    }
+
+    template <typename T>
+    friend TEAKFILE& operator>>(TEAKFILE& File, BUFFER<T>& buffer)
+    {
+        int size, offset;
+        File >> size;
+        buffer.ReSize(0);
+        buffer.ReSize(size);
+        File >> offset;
+        for (int i = 0; i < buffer.Size; i++)
+            File >> buffer.MemPointer[i];
+        buffer.DelPointer = buffer.MemPointer + offset;
         return File;
     }
 
