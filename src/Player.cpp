@@ -683,7 +683,7 @@ SLONG PLAYER::GetMissionRating (bool bAnderer)
                __int64 f = 0;
 
                p = Statistiken[STAT_PASSAGIERE].GetAtPastDay(1)-Statistiken[STAT_PASSAGIERE].GetAtPastDay(6);
-               for (c=0; c<min(Sim.Date, 5); c++)
+               for (c = 0; c < min((int)Sim.Date, 5); ++c)
                   f += Statistiken[STAT_FLUGZEUGE].GetAtPastDay(c+1);
 
                if (f) return (SLONG(p/f)); else return (0);
@@ -716,7 +716,7 @@ SLONG PLAYER::GetMissionRating (bool bAnderer)
                if (bAnderer==0)
                {
                   long anz=0;
-                  for (long c=1; c<=min(29, Sim.Date); c++)
+                  for (long c = 1; c <= min(29, (int)Sim.Date); ++c)
                   {
                      sum+=SLONG(Statistiken[STAT_AKTIENKURS].GetAtPastDay(c));
                      anz++;

@@ -566,9 +566,6 @@ void CSmackerPerson::Pump (void)
 //--------------------------------------------------------------------------------------------
 void CSmackerPerson::NextClip (void)
 {
-   SLONG c;
-   SLONG PropSum;
-
    if (Clips.AnzEntries()==0) return;
 
    if (Clips[ActiveClip].PostVar && (Clips[ActiveClip].PostOperation&SMACKER_CLIP_POST)) //Variablen-Messageing:
@@ -594,7 +591,8 @@ void CSmackerPerson::NextClip (void)
       {
          //1. Schauen, wie's weitergeht ohen die Stimmung zu ändern:
          //---------------------------------------------------------------------------
-         PropSum=0; //Wahrscheinlichkeiten aufsummieren:
+         SLONG PropSum = 0; //Wahrscheinlichkeiten aufsummieren:
+         int c = 0;
          for (c=0; c<Clips[ActiveClip].SuccessorIds.AnzEntries(); c++)
             if (Clips[Clips[ActiveClip].SuccessorIds[c]].MoodId==DesiredMood && Clips[ActiveClip].SuccessorTokens[c*2]!='E')
                PropSum+=(Clips[ActiveClip].SuccessorTokens[c*2+1]-'0');
@@ -639,7 +637,8 @@ void CSmackerPerson::NextClip (void)
       {
          //1. Probieren, ob es Exits in die richtige Richtung gibt:
          //---------------------------------------------------------------------------
-         PropSum=0; //Wahrscheinlichkeiten aufsummieren:
+         SLONG PropSum = 0; //Wahrscheinlichkeiten aufsummieren:
+         int c = 0;
          for (c=0; c<Clips[ActiveClip].SuccessorIds.AnzEntries(); c++)
             if (Clips[Clips[ActiveClip].SuccessorIds[c]].MoodId==DesiredMood && Clips[ActiveClip].SuccessorTokens[c*2]=='E')
                PropSum+=(Clips[ActiveClip].SuccessorTokens[c*2+1]-'0');

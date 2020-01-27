@@ -4002,7 +4002,7 @@ void CStdRaum::RepaintTip (void)
 BOOL CStdRaum::ConvertMousePosition (const XY &WindowsBased, XY *RoomBased)
 {
    //Koordinaten für kleine Fenster konvertieren:
-   *RoomBased = WindowsBased + CPoint(-WinP1.x, -WinP1.y);
+   *RoomBased = WindowsBased + XY(-WinP1.x, -WinP1.y);
 
    //Klick außerhalb vom Fenster?
    if (WindowsBased.x<WinP1.x || WindowsBased.y<WinP1.y || WindowsBased.x>WinP2.x || WindowsBased.y>WinP2.y)
